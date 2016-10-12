@@ -1,10 +1,10 @@
-*
+
 input.ng-invalid {
     background-color: red;
 }
 
 
-input[type="text"],input[type="email"],input[type="password"]{
+input[type="text"],input[type="email"],input[type="password"],input[type="number"]{
  display: inline-block;
   color:black;
   height: 2em;
@@ -101,3 +101,4 @@ li:hover ul#submenu {
 #submenu a {
   background-color:#000000;
 }
+

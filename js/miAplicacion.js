@@ -26,10 +26,7 @@ $authProvider.github({
   popupOptions: { width: 1020, height: 618 }
 });
 
-
-
-
-	$stateProvider
+$stateProvider
 		.state(
 			"inicio",{
 				url: "/inicio",
@@ -37,11 +34,10 @@ $authProvider.github({
 				controller:"controlInicio"
 			})
 			.state(
-			"persona",{
+			"menu",{
 				url:"/menu",
 				abstract:true,
-				templateUrl:".menuAbstracto.html",
-				controller:"controlMenuAbstracto"				
+				templateUrl:"menuAbstracto.html"
 
 			})
 			.state(
@@ -53,12 +49,107 @@ $authProvider.github({
 					controller:"controlLoginMenu"
 						}
 				}
-			})	
+			})	.state(
+			"menu.inicio",{
+				url:"/inicio",
+				views: {
+					"contenido":{
+					templateUrl:"inicio.html",
+					controller:"controlInicio"
+						}
+				}
+			}).state(
+			"persona.Grilla",{
+				url:"/grilla",
+				views: {
+					"contenido":{
+					templateUrl:"./AbmPersona/personaGrilla.html",
+					controller:"controlPersonaGrilla"
+						}
+				}
+			}).state(
+			"login",{
+				url:"/login",
+				abstract:true,
+				templateUrl:"./formularios/LoginAngular/abstractoLogin.html"
+
+			}).state(
+			"login.menu",{
+				url:"/menuLogin",
+				views: {
+					"login":{
+					templateUrl:"./formularios/LoginAngular/login.html",
+					controller:"controlLogin"
+						}
+				}
+			}).state(
+			"login.registro",{
+				url:"/registroLogin",
+				views: {
+					"login":{
+					templateUrl:"./formularios/LoginAngular/registro.html",
+					controller:"ControlRegistro"
+						}
+				}
+			}).state(
+			"sala",{
+				url:"/salaDeJuegos",
+				abstract:true,
+				templateUrl:"./salaDeJuegos/abstractoSala.html"
+
+			}).state(
+			"sala.menu",{
+				url:"/menuSalaJuegos",
+				views: {
+					"sala":{
+					templateUrl:"./salaDeJuegos/sala.html",
+					controller:"controlSalaJuegos"
+						}
+				}
+			}).state(
+			"sala.juego1",{
+				url:"/juego1",
+				views: {
+					"sala":{
+					templateUrl:"./salaDeJuegos/AdivinaElNumero1.html",
+					controller:"controlSalaJuegos"
+						}
+				}
+			}).state(
+			"sala.juego2",{
+				url:"/juego2",
+				views: {
+					"sala":{
+					templateUrl:"./salaDeJuegos/AdivinaElNumero2.html",
+					controller:"controlSalaJuegos"
+						}
+				}
+			}).state(
+			"sala.juego3",{
+				url:"/juego3",
+				views: {
+					"sala":{
+					templateUrl:"./salaDeJuegos/PiedarPapelTijera1.html",
+					controller:"controlSalaJuegos"
+						}
+				}
+			}).state(
+			"sala.juego4",{
+				url:"/juego4",
+				views: {
+					"sala":{
+					templateUrl:"./salaDeJuegos/PiedarPapelTijera2.html",
+					controller:"controlSalaJuegos"
+						}
+				}
+			})
 
 
 
 
-		$urlRouterProvider.otherwise("/inicio");
+		$urlRouterProvider.otherwise("/menu/inicio");
+
+
 
 });
 
@@ -71,7 +162,7 @@ miApp.controller("controlInicio",function($scope){
 
 });
 
-miApp.controller("controlPersonaAbstracta",function($scope,$auth,$state){
+miApp.controller("controlMenuAbstracto",function($scope,$auth,$state){
 
 	$scope.Desloguear = function(){
 
