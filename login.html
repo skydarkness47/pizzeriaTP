@@ -1,44 +1,48 @@
-<!DOCTYPE html>
+
+    <link rel="stylesheet" href="css/style.css">
+
+  
 
 
-  <meta charset="utf-8">
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <script SRC="bower_components/angular/angular.min.js" TYPE="text/javascript"></script>
-    <script SRC="js/app.js" TYPE="text/javascript"></script>
+  
 
 
-  <title>LOGIN ANGULAR</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
+ 
 
-<center> <h1><font color="green">INGRESO A ZONA DE CLIENTES</font></h1>   </center>  
-<body ng-app="ABMangularPHP" ng-controller="controlAlta">
+  <div ng-if= "tipologin != 'CLIENTE'">
+<center> <h1><font color="green">SELECCIONE TIPO DE LOGIN</font></h1>   </center>  
             <div class="container"  align= "center" name="divLogeo" id="divLogueo"  >
 
     <form name="formIngreso" id="formIngreso" enctype="multipart/form-data" ng-submit="enviar" >
 
 
-     
-         <p>
-        <input type="number" value="" placeholder="ingrese id de cliente" ng-model="persona.email" required />
+ <select name="multipleSelect"  ng-model="tipologin" value="hola" >
+  <option >SELECCIONAR</option>
+  <option ng-model="cliente" >CLIENTE</option>
+  <option ng-model="admin">ADMIN</option>
+   <option ng-model="operador">OPERADOR</option>
+  
+
+</select>
+
+
+    <div ng-if="tipologin == 'CLIENTE'">
+       <center> <h1><font color="RED">INGRESO A PANEL DE CLIENTES</font></h1>   </center>  
+        <input type="number" value="" placeholder="ingrese id de cliente" ng-model="usuario.num" required />
         </p>
 
          <p>
-        <input type="number" value="" placeholder="ingrese dni" ng-model="persona.password" required  />
+        <input type="number" value="" placeholder="ingrese dni" ng-model="usuario.dni" required  />
         </p>
 
         <p>
-          <input type="password" value="" placeholder="ingrese password" ng-model="persona.repetirpassword" required  />
+          <input type="password" value="" placeholder="ingrese password" ng-model="usuario.clave" required  />
         </p>
-        <input type="submit" id="Ingreso" ng-disabled='formIngreso.$invalid' class="button" ng-Click="enviar()" name="Ingreso" value="ingreso" />
+        <input type="submit" id="Ingreso" class="button" ng-Click="IniciarSeccion()" name="Ingreso" value="ingreso" />
         </div>
 
-        </form>
-     
-    </div>
 
- 
-  </section>
+</div>
+       
 
-</body>
-</html>
+

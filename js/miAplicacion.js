@@ -3,7 +3,7 @@ var miApp = angular.module("AngularABM",["ui.router","angularFileUpload",'satell
 
 miApp.config(function($stateProvider,$urlRouterProvider,$authProvider){
 
-$authProvider.loginUrl = 'Clase.06/ABM_PERSONA/servidor/jwt/php/auth.php';
+$authProvider.loginUrl = 'pizzeriaTP/servidor/jwt/php/auth.php';
 $authProvider.signupUrl = '/auth/signup';
 $authProvider.unlinkUrl = '/auth/unlink/';
 $authProvider.tokenName = 'TokenNameAxelCores';
@@ -58,92 +58,7 @@ $stateProvider
 					controller:"controlInicio"
 						}
 				}
-			}).state(
-			"persona.Grilla",{
-				url:"/grilla",
-				views: {
-					"contenido":{
-					templateUrl:"./AbmPersona/personaGrilla.html",
-					controller:"controlPersonaGrilla"
-						}
-				}
-			}).state(
-			"login",{
-				url:"/login",
-				abstract:true,
-				templateUrl:"./formularios/LoginAngular/abstractoLogin.html"
-
-			}).state(
-			"login.menu",{
-				url:"/menuLogin",
-				views: {
-					"login":{
-					templateUrl:"./formularios/LoginAngular/login.html",
-					controller:"controlLogin"
-						}
-				}
-			}).state(
-			"login.registro",{
-				url:"/registroLogin",
-				views: {
-					"login":{
-					templateUrl:"./formularios/LoginAngular/registro.html",
-					controller:"ControlRegistro"
-						}
-				}
-			}).state(
-			"sala",{
-				url:"/salaDeJuegos",
-				abstract:true,
-				templateUrl:"./salaDeJuegos/abstractoSala.html"
-
-			}).state(
-			"sala.menu",{
-				url:"/menuSalaJuegos",
-				views: {
-					"sala":{
-					templateUrl:"./salaDeJuegos/sala.html",
-					controller:"controlSalaJuegos"
-						}
-				}
-			}).state(
-			"sala.juego1",{
-				url:"/juego1",
-				views: {
-					"sala":{
-					templateUrl:"./salaDeJuegos/AdivinaElNumero1.html",
-					controller:"controlSalaJuegos"
-						}
-				}
-			}).state(
-			"sala.juego2",{
-				url:"/juego2",
-				views: {
-					"sala":{
-					templateUrl:"./salaDeJuegos/AdivinaElNumero2.html",
-					controller:"controlSalaJuegos"
-						}
-				}
-			}).state(
-			"sala.juego3",{
-				url:"/juego3",
-				views: {
-					"sala":{
-					templateUrl:"./salaDeJuegos/PiedarPapelTijera1.html",
-					controller:"controlSalaJuegos"
-						}
-				}
-			}).state(
-			"sala.juego4",{
-				url:"/juego4",
-				views: {
-					"sala":{
-					templateUrl:"./salaDeJuegos/PiedarPapelTijera2.html",
-					controller:"controlSalaJuegos"
-						}
-				}
 			})
-
 
 
 
@@ -178,22 +93,41 @@ miApp.controller("controlMenuAbstracto",function($scope,$auth,$state){
 
 miApp.controller("controlLoginMenu",function($scope,$state,$auth){
 
-		if(!$auth.isAuthenticated())
-		$state.go("login.menu");
 
-		$scope.IraLogin = function(){
-		$state.go("menu.login");
+$scope.usuario={};
+$scope.authenticate = function(provider) {
+      $auth.authenticate(provider);
+    };
+
+
+if($auth.isAuthenticated())
+	console.info("Token",$auth.getPayload());
+else
+	console.info("No Token",$auth.getPayload());
+
+$scope.IniciarSeccion = function(){
+	console.info($scope.usuario);
+	$auth.login($scope.usuario)
+  	.then(function(response) {
+  		if($auth.isAuthenticated()){
+  			
+			console.info("Token Validado", $auth.getPayload());
+			
 		}
-		$scope.IraGrilla = function(){
-			$state.go("persona.Grilla");
-		}
+		else
+			console.info("No Token Valido",$auth.getPayload());
+    	
+  	})
+  	.catch(function(response) {
+    	console.info("no",response);
+  	});
+}
 
 
-			$scope.Desloguear = function(){
 
-				$auth.logout();
-				$state.go("login.menu");
-			}
+
+
+
 
 
 });
