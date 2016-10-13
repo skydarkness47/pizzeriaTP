@@ -91,10 +91,13 @@ miApp.controller("controlMenuAbstracto",function($scope,$auth,$state){
 });
 
 
-miApp.controller("controlLoginMenu",function($scope,$state,$auth){
+miApp.controller("controlLoginMenu",function($scope,$state,$auth,$http){
+			
+$scope.usuario  = {};
 
 
-$scope.usuario={};
+
+
 $scope.authenticate = function(provider) {
       $auth.authenticate(provider);
     };
@@ -105,12 +108,54 @@ if($auth.isAuthenticated())
 else
 	console.info("No Token",$auth.getPayload());
 
-$scope.IniciarSeccion = function(){
-	console.info($scope.usuario);
+$scope.IniciarSeccion = function(tipo){
+	if(tipo == "admin")
+		{
+			
+		
+		$scope.usuario.tipo ="admin";
+		
+
+		}else if(tipo == "cliente")
+		{
+	
+	
+		$scope.usuario.tipo ="cliente";
+	
+
+		}
+	
+
+	
+	
+$http.get("http://localhost/pizzeriaTP/ws1/usuarios/validar/"+JSON.stringify($scope.usuario))
+
+
+ .then(function(respuesta) {    
+$scope.usuario  = {};
+ console.info(respuesta);   
+         //aca se ejetuca si retorno sin errores        
+         	$scope.validador = respuesta.data;
+
+         	console.info("d",$scope.validador);
+			if($scope.validador != true)
+			{
+				console.log("no entro");
+			}else
+			{
+				console.log("entro");
+ $http.post("PHP/nexo.php",{datos:{accion :"traer",usuario:$scope.usuario}})	
+ 		 	.then(function(respuesta) {     	
+			$datos = respuesta.data;
+			$scope.usuario.tipo =$datos;
+			console.info($scope.usuario);
+
+			
 	$auth.login($scope.usuario)
   	.then(function(response) {
+  		console.info(response);
   		if($auth.isAuthenticated()){
-  			
+  			$state.go("persona.Grilla");
 			console.info("Token Validado", $auth.getPayload());
 			
 		}
@@ -121,6 +166,24 @@ $scope.IniciarSeccion = function(){
   	.catch(function(response) {
     	console.info("no",response);
   	});
+
+
+		},function errorCallback(response) {
+				 $scope.ListadoPersonas= [];
+				console.log( response);
+		 });
+
+
+
+		
+			
+		}
+	    	
+  	});
+
+
+
+	
 }
 
 

@@ -49,6 +49,17 @@ $app->get('/personas[/]', function ($request, $response, $args) {
     return $response->write(json_encode($datos));
 });
 
+
+$app->get('/usuarios/validar/{objeto}', function ($request, $response, $args) {
+    $persona=json_decode($args['objeto']);
+    var_dump($persona);
+});
+
+
+
+
+
+
 /* POST: Para crear recursos */
 $app->post('/personas/{objeto}', function ($request, $response, $args) {
     $persona=json_decode($args['objeto']);
