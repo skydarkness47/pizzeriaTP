@@ -1,6 +1,6 @@
 <?php
 require_once('Clases/AccesoDatos.php');
-require_once('Clases/Personas.php');
+require_once('Clases/administradores.php');
 
 /**
  * Step 1: Require the Slim Framework using Composer's autoloader
@@ -51,11 +51,37 @@ $app->get('/personas[/]', function ($request, $response, $args) {
 
 
 $app->get('/usuarios/validar/{objeto}', function ($request, $response, $args) {
-    $persona=json_decode($args['objeto']);
-    var_dump($persona);
+    $usuario=json_decode($args['objeto']);
+   $validador = false;
+
+   if($usuario->perfil == "admin")
+   {
+   $arrAdmin = Administrador::TraerTodosLosAdmin();
+
+   foreach ($arrAdmin as $adm) {
+        if($adm->usuario == $usuario->usuario)
+            if($adm->clave == $usuario->clave)
+                 $validador=true;
+        
+        
+   
+   }
+
+}
+   echo  $validador;
+
+
 });
 
+$app->get('/usuarios/traer/{objeto}', function ($request, $response, $args) {
 
+  $admin=json_decode($args['objeto']);
+
+  $adminBuscado=Administrador::TraerUnAdmin($admin->usuario);
+  var_dump($adminBuscado);
+   
+ 
+});
 
 
 

@@ -1,14 +1,15 @@
 <?php
 require_once"accesoDatos.php";
-class Persona
+class Administrador
 {
 //--------------------------------------------------------------------------------//
 //--ATRIBUTOS
 	public $id;
-	public $nombre;
- 	public $apellido;
-  	public $dni;
+	public $usuario;
+ 	public $clave;
+  	public $nombre;
   	public $foto;
+  	public $perfil;
 
 //--------------------------------------------------------------------------------//
 
@@ -18,57 +19,50 @@ class Persona
 	{
 		return $this->id;
 	}
-	public function GetApellido()
+	public function GetUsuario()
 	{
-		return $this->apellido;
+		return $this->usuario;
 	}
 	public function GetNombre()
 	{
 		return $this->nombre;
 	}
-	public function GetDni()
-	{
-		return $this->dni;
-	}
-	public function GetFoto()
-	{
-		return json_decode($this->foto);
-	}
 	public function GetClave()
 	{
 		return $this->clave;
 	}
-		public function GetClave2()
+	public function GetFoto()
 	{
-		return $this->clave2;
+		return $this->foto;
+	}
+
+	public function GetPerfil()
+	{
+		return $this->perfil;
 	}
 	public function SetId($valor)
 	{
 		$this->id = $valor;
 	}
-	public function SetApellido($valor)
+	public function SetUsuario($valor)
 	{
-		$this->apellido = $valor;
+		$this->usuario = $valor;
 	}
 	public function SetNombre($valor)
 	{
 		$this->nombre = $valor;
 	}
-	public function SetDni($valor)
+	public function SetClave($valor)
 	{
-		$this->dni = $valor;
+		$this->clave = $valor;
 	}
 	public function SetFoto($valor)
 	{
 		$this->foto = $valor;
 	}
-	public function SetClave($valor)
+	public function SetPerfil($valor)
 	{
-	 $this->clave =$valor;
-	}
-		public function SetClave2($valor)
-	{
-		$this->clave2 =$valor;
+		 $this->perfil = $valor;
 	}
 //--------------------------------------------------------------------------------//
 //--CONSTRUCTOR
@@ -81,6 +75,7 @@ class Persona
 			$this->nombre = $obj->nombre;
 			$this->dni = $dni;
 			$this->foto = $obj->foto;
+			
 		}
 	}
 
@@ -94,32 +89,36 @@ class Persona
 
 //--------------------------------------------------------------------------------//
 //--METODO DE CLASE
-	public static function TraerUnaPersona($idParametro) 
+	public static function TraerUnAdmin($user) 
 	{	
+
+
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-		//$consulta =$objetoAccesoDato->RetornarConsulta("select * from persona where id =:id");
-		$consulta =$objetoAccesoDato->RetornarConsulta("CALL TraerUnaPersona(:id)");
-		$consulta->bindValue(':id', $idParametro, PDO::PARAM_INT);
+		$consulta =$objetoAccesoDato->RetornarConsulta("select * from administradores where Usuario =:usuario");
+		$consulta->bindValue(':usuario', $user, PDO::PARAM_STR);
 		$consulta->execute();
-		$personaBuscada= $consulta->fetchObject('persona');
-		return $personaBuscada;				
+		$personaBuscada= $consulta->fetchObject('Administrador');
+		return $personaBuscada;	
+					
 	}
 	
-	public static function TraerTodasLasPersonas()
+	public static function TraerTodosLosAdmin()
 	{
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		//$consulta =$objetoAccesoDato->RetornarConsulta("select * from persona");
-	$consulta =$objetoAccesoDato->RetornarConsulta("select id,nombre,apellido,dni,foto from persona");
+	$consulta =$objetoAccesoDato->RetornarConsulta("select id,Usuario as usuario, Nombre as nombre,Clave as clave,Foto as foto, Perfil as perfil from administradores");
 		$consulta->execute();			
-		$arrPersonas= $consulta->fetchAll(PDO::FETCH_CLASS, "persona");	
-		return $arrPersonas;
+		$arrAdmin= $consulta->fetchAll(PDO::FETCH_CLASS, "Administrador");	
+		return $arrAdmin;
 	}
 	
 	public static function BorrarPersona($idParametro)
 	{	
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		//$consulta =$objetoAccesoDato->RetornarConsulta("delete from persona	WHERE id=:id");	
-		$consulta = $objetoAccesoDato->RetornarConsulta("delete from persona WHERE id=:id");	
+		$consulta =$objetoAccesoDato->RetornarConsulta("delete 
+				from persona 				
+				WHERE id=:id");	
 		$consulta->bindValue(':id',$idParametro, PDO::PARAM_INT);		
 		$consulta->execute();
 		return $consulta->rowCount();
@@ -128,14 +127,19 @@ class Persona
 	
 	public static function ModificarPersona($persona)
 	{
-		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-		$consulta =$objetoAccesoDato->RetornarConsulta("update persona set nombre=:nombre,apellido=:apellido, foto=:foto WHERE id=:id");
-		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
-		$consulta->bindValue(':id',$persona->id, PDO::PARAM_INT);
-		$consulta->bindValue(':nombre',$persona->nombre, PDO::PARAM_STR);
-		$consulta->bindValue(':apellido', $persona->apellido, PDO::PARAM_STR);
-		$consulta->bindValue(':foto', $persona->foto, PDO::PARAM_STR);
-		return $consulta->execute();
+			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+			$consulta =$objetoAccesoDato->RetornarConsulta("
+				update persona 
+				set nombre=:nombre,
+				apellido=:apellido,
+				foto=:foto
+				WHERE id=:id");
+			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
+			$consulta->bindValue(':id',$persona->id, PDO::PARAM_INT);
+			$consulta->bindValue(':nombre',$persona->nombre, PDO::PARAM_STR);
+			$consulta->bindValue(':apellido', $persona->apellido, PDO::PARAM_STR);
+			$consulta->bindValue(':foto', $persona->foto, PDO::PARAM_STR);
+			return $consulta->execute();
 	}
 
 //--------------------------------------------------------------------------------//
@@ -146,14 +150,16 @@ class Persona
 	{
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		//$consulta =$objetoAccesoDato->RetornarConsulta("INSERT into persona (nombre,apellido,dni,foto)values(:nombre,:apellido,:dni,:foto)");
-		$consulta =$objetoAccesoDato->RetornarConsulta("insert into persona (nombre, apellido, dni,foto)values(:nombre,:apellido,:dni,:foto)");
+		$consulta =$objetoAccesoDato->RetornarConsulta("INSERT into persona (Nombre,Apellido,Dni,Foto)values(:nombre,:apellido,:dni,:foto)");
 		$consulta->bindValue(':nombre',$persona->nombre, PDO::PARAM_STR);
 		$consulta->bindValue(':apellido', $persona->apellido, PDO::PARAM_STR);
 		$consulta->bindValue(':dni', $persona->dni, PDO::PARAM_STR);
 		$consulta->bindValue(':foto', $persona->foto, PDO::PARAM_STR);
 
 		$consulta->execute();		
-		return $objetoAccesoDato->RetornarUltimoIdInsertado();		
+		return $objetoAccesoDato->RetornarUltimoIdInsertado();
+	
+				
 	}	
 //--------------------------------------------------------------------------------//
 
@@ -170,6 +176,8 @@ class Persona
 		$persona->dni = "333333";
 		$persona->foto = "333333.jpg";
 
+		//$objetJson = json_encode($persona);
+		//echo $objetJson;
 		$persona2 = new stdClass();
 		$persona2->id = "5";
 		$persona2->nombre = "Bañera";
@@ -187,6 +195,8 @@ class Persona
 		$arrayDePersonas[]=$persona;
 		$arrayDePersonas[]=$persona2;
 		$arrayDePersonas[]=$persona3;
+		 
+		
 
 		return  $arrayDePersonas;
 				

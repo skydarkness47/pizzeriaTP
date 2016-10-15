@@ -113,14 +113,14 @@ $scope.IniciarSeccion = function(tipo){
 		{
 			
 		
-		$scope.usuario.tipo ="admin";
+		$scope.usuario.perfil ="admin";
 		
 
 		}else if(tipo == "cliente")
 		{
 	
 	
-		$scope.usuario.tipo ="cliente";
+		$scope.usuario.perfil ="cliente";
 	
 
 		}
@@ -132,7 +132,7 @@ $http.get("http://localhost/pizzeriaTP/ws1/usuarios/validar/"+JSON.stringify($sc
 
 
  .then(function(respuesta) {    
-$scope.usuario  = {};
+
  console.info(respuesta);   
          //aca se ejetuca si retorno sin errores        
          	$scope.validador = respuesta.data;
@@ -140,28 +140,31 @@ $scope.usuario  = {};
          	console.info("d",$scope.validador);
 			if($scope.validador != true)
 			{
+				$scope.usuario  = {};
 				console.log("no entro");
 			}else
 			{
 				console.log("entro");
- $http.post("PHP/nexo.php",{datos:{accion :"traer",usuario:$scope.usuario}})	
- 		 	.then(function(respuesta) {     	
-			$datos = respuesta.data;
-			$scope.usuario.tipo =$datos;
-			console.info($scope.usuario);
 
-			
+ $http.get("http://localhost/pizzeriaTP/ws1/usuarios/traer/"+JSON.stringify($scope.usuario))		
+ 		 	.then(function(respuesta) {   	
+		console.info(respuesta);
 	$auth.login($scope.usuario)
   	.then(function(response) {
   		console.info(response);
   		if($auth.isAuthenticated()){
+
+  			/*
   			$state.go("persona.Grilla");
+			*/
 			console.info("Token Validado", $auth.getPayload());
 			
+
+			$scope.usuario  = {};
 		}
 		else
 			console.info("No Token Valido",$auth.getPayload());
-    	
+    	$scope.usuario  = {};
   	})
   	.catch(function(response) {
     	console.info("no",response);
