@@ -62,14 +62,17 @@ $stateProvider
 
 
 
-		$urlRouterProvider.otherwise("/menu/inicio");
+		$urlRouterProvider.otherwise("/inicio");
 
 
 
 });
 
 
-miApp.controller("controlInicio",function($scope){
+miApp.controller("controlInicio",function($scope,$auth){
+
+if($auth.isAuthenticated())
+$scope.user = $auth.getPayload();
 
 
 
@@ -78,6 +81,13 @@ miApp.controller("controlInicio",function($scope){
 });
 
 miApp.controller("controlMenuAbstracto",function($scope,$auth,$state){
+
+
+
+if($auth.isAuthenticated())
+$scope.user = $auth.getPayload();
+
+console.info($scope.user);
 
 	$scope.Desloguear = function(){
 
@@ -109,23 +119,10 @@ else
 	console.info("No Token",$auth.getPayload());
 
 $scope.IniciarSeccion = function(tipo){
-	if(tipo == "admin")
-		{
-			
-		
-		$scope.usuario.perfil ="admin";
-		
 
-		}else if(tipo == "cliente")
-		{
-	
-	
-		$scope.usuario.perfil ="cliente";
-	
+$scope.usuario.perfil = tipo;
 
-		}
-	
-
+console.info($scope.usuario);
 	
 	
 $http.get("http://localhost/pizzeriaTP/ws1/usuarios/validar/"+JSON.stringify($scope.usuario))
@@ -134,7 +131,9 @@ $http.get("http://localhost/pizzeriaTP/ws1/usuarios/validar/"+JSON.stringify($sc
  .then(function(respuesta) {    
 
  console.info(respuesta);   
-         //aca se ejetuca si retorno sin errores        
+         //aca se ejetuca si retorno sin errores  
+         console.info(respuesta);  
+
          	$scope.validador = respuesta.data;
 
          	console.info("d",$scope.validador);
@@ -146,7 +145,9 @@ $http.get("http://localhost/pizzeriaTP/ws1/usuarios/validar/"+JSON.stringify($sc
 			{
 				console.log("entro");
 
+
  $http.get("http://localhost/pizzeriaTP/ws1/usuarios/traer/"+JSON.stringify($scope.usuario))		
+
  		 	.then(function(respuesta) {   	
 		console.info(respuesta);
 	$auth.login($scope.usuario)
@@ -154,9 +155,8 @@ $http.get("http://localhost/pizzeriaTP/ws1/usuarios/validar/"+JSON.stringify($sc
   		console.info(response);
   		if($auth.isAuthenticated()){
 
-  			/*
-  			$state.go("persona.Grilla");
-			*/
+  			
+  			$state.go("menu.inicio");
 			console.info("Token Validado", $auth.getPayload());
 			
 

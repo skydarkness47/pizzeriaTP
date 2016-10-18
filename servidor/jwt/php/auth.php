@@ -13,7 +13,10 @@ $usuario = json_decode($DatosPorPost);
 	$token["perfil"]=$usuario->clave;
 }else if($usuario->perfil == "cliente")
  {
- 	
+ 	$token["numero"]=$usuario->numero;
+	$token["dni"]=$usuario->dni;
+	$token["clave"]=$usuario->clave;
+	
  }
 	$token["iat"]=time();//momento de creacion
 	$token["exp"]=time() + 20;

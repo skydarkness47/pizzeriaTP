@@ -1,6 +1,8 @@
 <?php
 require_once('Clases/AccesoDatos.php');
 require_once('Clases/administradores.php');
+require_once('Clases/clientes.php');
+
 
 /**
  * Step 1: Require the Slim Framework using Composer's autoloader
@@ -51,7 +53,8 @@ $app->get('/personas[/]', function ($request, $response, $args) {
 
 
 $app->get('/usuarios/validar/{objeto}', function ($request, $response, $args) {
-    $usuario=json_decode($args['objeto']);
+
+  $usuario=json_decode($args['objeto']);
    $validador = false;
 
    if($usuario->perfil == "admin")
@@ -62,12 +65,20 @@ $app->get('/usuarios/validar/{objeto}', function ($request, $response, $args) {
         if($adm->usuario == $usuario->usuario)
             if($adm->clave == $usuario->clave)
                  $validador=true;
-        
-        
-   
+
+   }}else if($usuario->perfil == "cliente")
+   {
+         $arrCliente=Cliente::TraerTodosLosClientes();
+          foreach ($arrCliente as $cliente ) {
+              if($cliente->numero == $usuario->numero)
+                  if($cliente->clave == $usuario->clave)
+                    if($cliente->dni == $usuario->dni)
+                $validador = true;
+      }
+
    }
 
-}
+
    echo  $validador;
 
 
@@ -75,10 +86,16 @@ $app->get('/usuarios/validar/{objeto}', function ($request, $response, $args) {
 
 $app->get('/usuarios/traer/{objeto}', function ($request, $response, $args) {
 
-  $admin=json_decode($args['objeto']);
-
-  $adminBuscado=Administrador::TraerUnAdmin($admin->usuario);
-  var_dump($adminBuscado);
+  $usuario=json_decode($args['objeto']);
+  var_dump($usuario);
+  if($usuario->perfil == "admin")
+  {
+  $usuarioBuscado=Administrador::TraerUnAdmin($usuario->usuario);
+  }else if($usuario->perfil == "admin")
+  {
+    $usuarioBuscado=Cliente::TraerUnCliente($usuario->numero);
+  }
+  var_dump($usuarioBuscado);
    
  
 });
