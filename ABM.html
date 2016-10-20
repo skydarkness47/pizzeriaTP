@@ -1,0 +1,73 @@
+
+  <link rel="stylesheet" href="css/style.css">
+
+
+<div ng-if="user.usuario == 'admin'" >
+<nav class="dropdownmenu">
+  <ul>
+    <li><a ui-sref="menu.inicio">INICIO</a></li>
+    <li><a >SOBRE NOSOTROS</a></li>
+    <li><a href="#">SUCURSALES</a>    </li>
+    <li><a >CONTACTENOS</a></li>
+     <li><a ui-sref="menu.ABM">ABM</a></li>
+     <li><a ui-sref="Deslogueo()" >DESLOGUEARSE</a></li>
+
+
+  </ul>
+</nav>
+</div>
+
+<br>
+<br>
+<br>
+      <link rel="stylesheet" href="css/style_login.css">
+    <link rel="stylesheet" href="css/style.css">
+
+         <body class="collage none-bg">
+   </head>
+
+      <div id="header">
+            <h1 class="name-title">
+           SELECCIONE TIPO ABM
+          </h1>
+         </div>
+</body>
+</html>
+
+     <div class="container"  align= "center" name="divLogeo" id="divLogueo"  >
+
+    <form name="formIngreso" id="formIngreso" enctype="multipart/form-data" ng-submit="enviar" >
+
+          <select name="multipleSelect"  ng-model="tipologin" value="hola">
+          <option selected="selected" >SELECCIONAR</option>
+          <option ng-model="cliente" >CLIENTE</option>
+          <option ng-model="local">LOCAL</option>
+         <option ng-model="emple">EMPLEADO</option>
+</select>
+  
+
+
+ <div ng-if="tipologin == 'CLIENTE'">
+    <div id="header">
+            <h1 class="name-title">
+           REGISTRO DE CLIENTES
+          </h1>
+         </div>
+         <input type="text" value="" placeholder="ingrese nombre de cliente" ng-model="usuario.nombre" required />
+        </p>
+         <p>
+         <input type="text" value="" placeholder="ingrese apellido de cliente" ng-model="usuario.apellido" required />
+        </p>
+         <p>
+        <input type="number" value="" placeholder="ingrese numero de cliente" ng-model="usuario.numero" required />
+        </p>
+         <p>
+        <input type="number" value="" placeholder="ingrese dni de cliente" ng-model="usuario.dni" required  />
+        </p>
+        <p>
+          <input type="password" value="" placeholder="ingrese clave de cliente" ng-model="usuario.clave" required  />
+        </p>
+        <input type="submit" id="Ingreso" class="button" ng-Click="Alta('cliente')" name="Alta" value="Alta" />
+        </div>
+
+</body>

@@ -58,6 +58,15 @@ $stateProvider
 					controller:"controlInicio"
 						}
 				}
+			}).state(
+			"menu.ABM",{
+				url:"/ABM",
+				views: {
+					"contenido":{
+					templateUrl:"ABM.html",
+					controller:"controlABM"
+						}
+				}
 			})
 
 
@@ -81,6 +90,26 @@ $scope.user = $auth.getPayload();
 });
 
 miApp.controller("controlMenuAbstracto",function($scope,$auth,$state){
+
+
+
+if($auth.isAuthenticated())
+$scope.user = $auth.getPayload();
+
+console.info($scope.user);
+
+	$scope.Desloguear = function(){
+
+				$auth.logout();
+				$state.go("login.menu");
+			}
+
+
+
+
+});
+
+miApp.controller("controlABM",function($scope,$auth,$state){
 
 
 
