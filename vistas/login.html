@@ -1,0 +1,90 @@
+
+  <link rel="stylesheet" href="css/style.css">
+
+<div >
+<nav class="dropdownmenu">
+  <ul>
+    <li><a ui-sref="inicio">INICIO</a></li>
+    <li><a href="http://www.jochaho.com/wordpress/about-pritesh-badge/">SOBRE NOSOTROS</a></li>
+    <li><a href="#">SUCURSALES</a>    </li>
+    <li><a ui-sref="menu.login">ZONA CLIENTES</a></li>
+    <li><a href="http://www.jochaho.com/wordpress/about-pritesh-badge/">CONTACTENOS</a></li>
+  </ul>
+</nav>
+</div>
+<br>
+<br>
+<br>
+      <link rel="stylesheet" href="css/style_login.css">
+    <link rel="stylesheet" href="css/style.css">
+
+         <body class="collage none-bg">
+   </head>
+
+      <div id="header">
+            <h1 class="name-title">
+           SELECCIONE TIPO DE USUARIO
+          </h1>
+         </div>
+    </body>
+</html>
+
+  <div ng-if= "tipologin != 'CLIENTE'">
+
+
+
+
+ 
+            <div class="container"  align= "center" name="divLogeo" id="divLogueo"  >
+
+    <form name="formIngreso" id="formIngreso" enctype="multipart/form-data" ng-submit="enviar" >
+
+
+ <select name="multipleSelect"  ng-model="tipologin"  >
+  <option selected>SELECCIONAR</option>
+  <option ng-model="cliente" >CLIENTE</option>
+  <option ng-model="admin">ADMIN</option>
+   <option ng-model="emple">EMPLEADO</option>
+
+
+</select>
+  
+ 
+
+    <div ng-if="tipologin == 'CLIENTE'">
+    <div id="header">
+            <h1 class="name-title">
+           LOGIN DE CLIENTES
+          </h1>
+         </div>
+        <input type="number" value="" placeholder="ingrese id de cliente" ng-model="usuario.numero" required />
+        </p>
+         <p>
+        <input type="number" value="" placeholder="ingrese dni" ng-model="usuario.dni" required  />
+        </p>
+        <p>
+          <input type="password" value="" placeholder="ingrese password" ng-model="usuario.clave" required  />
+        </p>
+        <input type="submit" id="Ingreso" class="button" ng-Click="IniciarSeccion('cliente')" name="Ingreso" value="ingreso" />
+        </div>
+
+
+
+     <div ng-if="tipologin == 'ADMIN'">
+    <div id="header">
+            <h1 class="name-title">
+           LOGIN DE ADMIN
+          </h1>
+         </div>
+        <input type="text" value="" placeholder="ingrese usuario" ng-model="usuario.usuario" required />
+        </p>
+         <p>
+        <input type="password" value="" placeholder="ingrese clave" ng-model="usuario.clave" required  />
+        </p>
+      
+        <input type="submit" id="Ingreso" class="button" ng-Click="IniciarSeccion('admin')" name="Ingreso" value="ingreso" />
+        </div>
+
+
+
+</body>

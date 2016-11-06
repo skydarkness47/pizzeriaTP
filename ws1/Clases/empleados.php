@@ -10,7 +10,7 @@ class Empleado
 	public $perfil;
 	public $legajo;
  	public $clave;
- 	 public $foto;
+   public $foto;
   
 
 //--------------------------------------------------------------------------------//
@@ -42,10 +42,6 @@ class Empleado
 		return $this->clave;
 	}
 
-	public function GetPerfil()
-	{
-		return $this->perfil;
-	}
 	public function GetFoto()
 	{
 		return $this->foto;
@@ -74,10 +70,7 @@ class Empleado
 	{
 		$this->clave = $valor;
 	}
-	public function SetPerfil($valor)
-	{
-		 $this->perfil = $valor;
-	}
+
 	public function SetFoto()
 	{
 		return $this->foto;
@@ -124,7 +117,7 @@ class Empleado
 	{
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		//$consulta =$objetoAccesoDato->RetornarConsulta("select * from persona");
-	$consulta =$objetoAccesoDato->RetornarConsulta("select id,Nombre as nombre, Apellido as apellido , Leegajo as Legajo ,Clave as clave, Perfil as perfil, Foto as foto from cliente");
+	$consulta =$objetoAccesoDato->RetornarConsulta("select id,Nombre as nombre, Apellido as apellido , Legajo as Legajo ,Clave as clave, Perfil as perfil, Foto as foto from empleado");
 		$consulta->execute();			
 		$arrEmpleado= $consulta->fetchAll(PDO::FETCH_CLASS, "Empleado");	
 		return $arrEmpleado;

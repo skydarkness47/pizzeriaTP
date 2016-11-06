@@ -2,7 +2,17 @@
 input.ng-invalid {
     background-color: red;
 }
-
+input[type="file"]{
+  width:92%;
+  background:#fff;
+  margin-bottom:2%;
+  border:1px solid #ccc;
+  padding:2%;
+  font-family:'Open Sans',sans-serif;
+  font-size:140%;
+  font-weight: 800;
+  color:#555;
+}
 
 input[type="text"],input[type="email"],input[type="password"],input[type="number"],input[type="select"]{
  display: inline-block;

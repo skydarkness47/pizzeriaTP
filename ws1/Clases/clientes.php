@@ -10,6 +10,7 @@ class Cliente
 	public $numero;
 	public $dni;
  	public $clave;
+ 	public $foto;
   
 
 //--------------------------------------------------------------------------------//
@@ -155,15 +156,16 @@ class Cliente
 
 //--------------------------------------------------------------------------------//
 
-	public static function InsertarPersona($persona)
+	public static function InsertarCliente($cliente)
 	{
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-		//$consulta =$objetoAccesoDato->RetornarConsulta("INSERT into persona (nombre,apellido,dni,foto)values(:nombre,:apellido,:dni,:foto)");
-		$consulta =$objetoAccesoDato->RetornarConsulta("INSERT into persona (Nombre,Apellido,Dni,Foto)values(:nombre,:apellido,:dni,:foto)");
+			$consulta =$objetoAccesoDato->RetornarConsulta("INSERT into clientes (Nombre,Apellido,Numero,Dni,Clave,Foto)values(:nombre,:apellido,:numero,:dni,:clave,:foto)");
 		$consulta->bindValue(':nombre',$persona->nombre, PDO::PARAM_STR);
 		$consulta->bindValue(':apellido', $persona->apellido, PDO::PARAM_STR);
 		$consulta->bindValue(':dni', $persona->dni, PDO::PARAM_STR);
-		$consulta->bindValue(':foto', $persona->foto, PDO::PARAM_STR);
+		$consulta->bindValue(':clave',$persona->clave, PDO::PARAM_STR);
+		$consulta->bindValue(':numero',$persona->nombre, PDO::PARAM_STR);
+		//$consulta->bindValue(':foto', $persona->foto, PDO::PARAM_STR);
 
 		$consulta->execute();		
 		return $objetoAccesoDato->RetornarUltimoIdInsertado();
