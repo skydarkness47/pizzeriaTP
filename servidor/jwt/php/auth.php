@@ -19,7 +19,7 @@ $usuario = json_decode($DatosPorPost);
 	
  }
 	$token["iat"]=time();//momento de creacion
-	$token["exp"]=time() + 20;
+	$token["exp"]=time() + 20000000;
 	$jwt = JWT::encode($token, $ClaveDeEncriptacion);
 
 

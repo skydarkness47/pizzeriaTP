@@ -12,6 +12,7 @@ miApp.controller("controlABM",function($scope,$auth,$state,FileUploader,factoryL
 
 
 	$scope.SubirdorArchivos.onCompleteAll = function(item, response, status, headers) {
+		$scope.usuario.perfil = $scope.tipologin;
 
            
            factoryLoginABM.Insertar(JSON.stringify($scope.usuario)) //+ JSON.stringify($scope.persona))

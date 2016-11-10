@@ -122,10 +122,11 @@ $app->get('/usuarios/traer/{objeto}', function ($request, $response, $args) {
 /* POST: Para crear recursos */
 $app->post('/usuarios/alta/{objeto}', function ($request, $response, $args) {
     $persona=json_decode($args['objeto']);
-    var_dump($persona);
     $persona->foto=explode(';',$persona->foto);
     $arrayFoto = array();
     if(count($persona->foto) > 0){
+           // var_dump($persona);
+
         for ($i = 0; $i < count($persona->foto); $i++ ){
             $rutaVieja="fotos/".$persona->foto[$i];
             $rutaNueva=$persona->dni. "_". $i .".".PATHINFO($rutaVieja, PATHINFO_EXTENSION);
@@ -135,7 +136,6 @@ $app->post('/usuarios/alta/{objeto}', function ($request, $response, $args) {
         } 
         $persona->foto=json_encode($arrayFoto); 
     }
-
     if($persona->perfil == "cliente"){
           return $response->write(Cliente::InsertarCliente($persona)); 
     }
