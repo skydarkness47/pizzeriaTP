@@ -1,8 +1,6 @@
 <?php
 require_once('Clases/AccesoDatos.php');
-require_once('Clases/administradores.php');
-require_once('Clases/clientes.php');
-require_once('Clases/empleados.php');
+require_once('Clases/personas.php');
 
 
 /**
@@ -60,41 +58,20 @@ $app->get('/clientes[/]', function ($request, $response, $args) {
     return $response->write(json_encode($datos));
 });
 
-$app->get('/empleado[/]', function ($request, $response, $args) {
-    $datos=Empleado::TraerTodosLosEmpleados();
-    for ($i = 0; $i < count($datos); $i++ ){
-        $datos[$i]->foto=json_decode($datos[$i]->foto);
-    }
-    return $response->write(json_encode($datos));
-});
+
 
 $app->get('/usuarios/validar/{objeto}', function ($request, $response, $args) {
 
   $usuario=json_decode($args['objeto']);
-   $validador = false;
-
-   if($usuario->perfil == "admin")
-   {
-   $arrAdmin = Administrador::TraerTodosLosAdmin();
-
+   $validador = false;   
+   $arrAdmin = Usuario::TraerTodasLasPersonas();
    foreach ($arrAdmin as $adm) {
-        if($adm->usuario == $usuario->usuario)
-            if($adm->clave == $usuario->clave)
+        if($adm->nombre_usuario == $usuario->nombre_usuario)
+            if($adm->pass_usuario == $usuario->pass_usuario)
                  $validador=true;
 
-   }}else if($usuario->perfil == "cliente")
-   {
-         $arrCliente=Cliente::TraerTodosLosClientes();
-          foreach ($arrCliente as $cliente ) {
-              if($cliente->numero == $usuario->numero)
-                  if($cliente->clave == $usuario->clave)
-                    if($cliente->dni == $usuario->dni)
-                $validador = true;
-      }
-
+   
    }
-
-
    echo  $validador;
 
 
@@ -103,15 +80,11 @@ $app->get('/usuarios/validar/{objeto}', function ($request, $response, $args) {
 $app->get('/usuarios/traer/{objeto}', function ($request, $response, $args) {
 
   $usuario=json_decode($args['objeto']);
-  var_dump($usuario);
-  if($usuario->perfil == "admin")
-  {
-  $usuarioBuscado=Administrador::TraerUnAdmin($usuario->usuario);
-  }else if($usuario->perfil == "admin")
-  {
-    $usuarioBuscado=Cliente::TraerUnCliente($usuario->numero);
-  }
-  var_dump($usuarioBuscado);
+  
+ 
+  $usuarioBuscado=Usuario::TraerUnUsuario($usuario->nombre_usuario);
+ 
+  var_dump(json_encode($usuarioBuscado));
    
  
 });

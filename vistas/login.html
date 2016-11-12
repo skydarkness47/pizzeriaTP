@@ -23,7 +23,7 @@
 
       <div id="header">
             <h1 class="name-title">
-           SELECCIONE TIPO DE USUARIO
+                ZONA DE LOGIN
           </h1>
          </div>
     </body>
@@ -39,50 +39,17 @@
 
     <form name="formIngreso" id="formIngreso" enctype="multipart/form-data" ng-submit="enviar" >
 
-
- <select name="multipleSelect"  ng-model="tipologin"  >
-  <option selected>SELECCIONAR</option>
-  <option ng-model="cliente" >CLIENTE</option>
-  <option ng-model="admin">ADMIN</option>
-   <option ng-model="emple">EMPLEADO</option>
-
-
-</select>
-  
- 
-
-    <div ng-if="tipologin == 'CLIENTE'">
-    <div id="header">
-            <h1 class="name-title">
-           LOGIN DE CLIENTES
-          </h1>
-         </div>
-        <input type="number" value="" placeholder="ingrese id de cliente" ng-model="usuario.numero" required />
+        <br>
+        <br>
+         <p>
+        <input type="text" value="" placeholder="ingrese usuario" ng-model="usuario.nombre_usuario" required />
         </p>
          <p>
-        <input type="number" value="" placeholder="ingrese dni" ng-model="usuario.dni" required  />
+        <input type="password" value="" placeholder="ingrese clave" ng-model="usuario.pass_usuario" required  />
         </p>
         <p>
-          <input type="password" value="" placeholder="ingrese password" ng-model="usuario.clave" required  />
+        <input type="submit" id="Ingreso" class="button" ng-Click="IniciarSeccion()" name="Ingreso" value="ingreso" />
         </p>
-        <input type="submit" id="Ingreso" class="button" ng-Click="IniciarSeccion('cliente')" name="Ingreso" value="ingreso" />
-        </div>
-
-
-
-     <div ng-if="tipologin == 'ADMIN'">
-    <div id="header">
-            <h1 class="name-title">
-           LOGIN DE ADMIN
-          </h1>
-         </div>
-        <input type="text" value="" placeholder="ingrese usuario" ng-model="usuario.usuario" required />
-        </p>
-         <p>
-        <input type="password" value="" placeholder="ingrese clave" ng-model="usuario.clave" required  />
-        </p>
-      
-        <input type="submit" id="Ingreso" class="button" ng-Click="IniciarSeccion('admin')" name="Ingreso" value="ingreso" />
         </div>
 
 

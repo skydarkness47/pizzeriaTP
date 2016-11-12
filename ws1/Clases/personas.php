@@ -1,69 +1,53 @@
 <?php
 require_once"accesoDatos.php";
-class Administrador
+class Usuario
 {
 //--------------------------------------------------------------------------------//
 //--ATRIBUTOS
-	public $id;
-	public $usuario;
- 	public $clave;
-  	public $nombre;
-  	public $foto;
-  	public $perfil;
-
+	public $id_usuario;
+	public $nombre_usuario;
+	public $pass_usuario;
+	public $rol;
 //--------------------------------------------------------------------------------//
 
 //--------------------------------------------------------------------------------//
 //--GETTERS Y SETTERS
-  	public function GetId()
+  	public function Getid_usuario()
 	{
-		return $this->id;
+		return $this->id_usuario;
 	}
-	public function GetUsuario()
+	public function GetNombre_usuario()
 	{
-		return $this->usuario;
+		return $this->nombre_usuario;
 	}
-	public function GetNombre()
+	public function GetPass_usuario()
 	{
-		return $this->nombre;
+		return $this->pass_usuario;
 	}
-	public function GetClave()
+	public function Getrol()
 	{
-		return $this->clave;
+		return $this->id_rol;
 	}
-	public function GetFoto()
+	
+	public function Setid_usuario($parametro)
 	{
-		return $this->foto;
+		 $this->id_usuario = $parametro;
 	}
+	public function SetNombre_usuario($parametro)
+	{
+		$this->nombre_usuario = $parametro;
+	}
+	public function SetPass_usuario($parametro)
+	{
+		$this->pass_usuario = $parametro;
+	}
+	public function Setrol($parametro)
+	{
+		 $this->id_rol = $parametro;
+	}
+	
 
-	public function GetPerfil()
-	{
-		return $this->perfil;
-	}
-	public function SetId($valor)
-	{
-		$this->id = $valor;
-	}
-	public function SetUsuario($valor)
-	{
-		$this->usuario = $valor;
-	}
-	public function SetNombre($valor)
-	{
-		$this->nombre = $valor;
-	}
-	public function SetClave($valor)
-	{
-		$this->clave = $valor;
-	}
-	public function SetFoto($valor)
-	{
-		$this->foto = $valor;
-	}
-	public function SetPerfil($valor)
-	{
-		 $this->perfil = $valor;
-	}
+	
 //--------------------------------------------------------------------------------//
 //--CONSTRUCTOR
 	public function __construct($dni=NULL)
@@ -89,27 +73,27 @@ class Administrador
 
 //--------------------------------------------------------------------------------//
 //--METODO DE CLASE
-	public static function TraerUnAdmin($user) 
+	public static function TraerUnUsuario($usuario) 
 	{	
 
 
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-		$consulta =$objetoAccesoDato->RetornarConsulta("select * from administradores where Usuario =:usuario");
-		$consulta->bindValue(':usuario', $user, PDO::PARAM_STR);
+		$consulta =$objetoAccesoDato->RetornarConsulta("select * from usuario u  join rol r on u.id_rol = r.id_rol where u.nombre_usuario =:nombre_usuario");
+		$consulta->bindValue(':nombre_usuario', $usuario, PDO::PARAM_STR);
 		$consulta->execute();
-		$personaBuscada= $consulta->fetchObject('Administrador');
+		$personaBuscada= $consulta->fetchObject('Usuario');
 		return $personaBuscada;	
 					
 	}
 	
-	public static function TraerTodosLosAdmin()
+	public static function TraerTodasLasPersonas()
 	{
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		//$consulta =$objetoAccesoDato->RetornarConsulta("select * from persona");
-	$consulta =$objetoAccesoDato->RetornarConsulta("select id,Usuario as usuario, Nombre as nombre,Clave as clave,Foto as foto, Perfil as perfil from administradores");
+	$consulta =$objetoAccesoDato->RetornarConsulta("select id_usuario,nombre_usuario as nombre_usuario, pass_usuario as pass_usuario , id_rol as id_rol from usuario");
 		$consulta->execute();			
-		$arrAdmin= $consulta->fetchAll(PDO::FETCH_CLASS, "Administrador");	
-		return $arrAdmin;
+		$arrEmpleado= $consulta->fetchAll(PDO::FETCH_CLASS, "Usuario");	
+		return $arrEmpleado;
 	}
 	
 	public static function BorrarPersona($idParametro)

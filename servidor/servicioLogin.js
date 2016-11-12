@@ -17,9 +17,8 @@ var Url = factoryRutas.ApiUrl;
     this.TraerObjeto = TraerObjeto;
   function TraerObjeto(objeto){
 
-    return $http.get(Url +"/usuarios/validar/"+ objeto)
+    return $http.get(Url +"/usuarios/traer/"+ objeto)
       .then(function(respuesta) { 
-      console.info(respuesta.data);    
        return respuesta.data
 
     })

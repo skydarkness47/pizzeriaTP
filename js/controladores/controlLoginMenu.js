@@ -11,32 +11,30 @@ if($auth.isAuthenticated())
 else
 	console.info("No Token",$auth.getPayload());
 
-$scope.IniciarSeccion = function(tipo){
+$scope.IniciarSeccion = function(){
 
-$scope.usuario.perfil = tipo;
-
-console.info($scope.usuario);
+console.log($scope.usuario);
 	$scope.usuario = JSON.stringify($scope.usuario);
 	
 factoryLoginABM.validarLogin($scope.usuario)
  .then(function(respuesta) {    
- 	console.info(respuesta);
-         	$scope.validador = respuesta;
+ 	
 
-         	console.info("d",$scope.validador);
-			if($scope.validador != true)
+ 				if(respuesta != true)
 			{
 				$scope.usuario  = {};
 				console.log("no entro");
-			}else
-			{
+			}else{
+			
 				console.log("entro");
+			
 
 factoryLoginABM.TraerObjeto($scope.usuario)
- 		 	.then(function(respuesta) {   	
-		console.info(respuesta);
-			$auth.login($scope.usuario)
+ 		 	.then(function(respuesta) { 
+ 		 		console.log(respuesta);
+			$auth.login(respuesta)
   				.then(function(response) {
+
   					console.info(response);
  			 		if($auth.isAuthenticated()){
 				  			$state.go("inicio");
