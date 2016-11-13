@@ -5,8 +5,8 @@ var Url = factoryRutas.ApiUrl;
 
   this.Insertar = Insertar;
   function Insertar(objeto){
-
-    return $http.post(Url + "/usuarios/alta/" + objeto)
+console.log(objeto);
+    return $http.post(Url + "usuarios/alta/" + objeto)
       .then(function(respuesta) { 
        return respuesta.data
 

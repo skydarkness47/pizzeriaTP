@@ -66,8 +66,8 @@ $app->get('/usuarios/validar/{objeto}', function ($request, $response, $args) {
    $validador = false;   
    $arrAdmin = Usuario::TraerTodasLasPersonas();
    foreach ($arrAdmin as $adm) {
-        if($adm->nombre_usuario == $usuario->nombre_usuario)
-            if($adm->pass_usuario == $usuario->pass_usuario)
+        if($adm->mail == $usuario->mail)
+            if($adm->clave == $usuario->clave)
                  $validador=true;
 
    
@@ -77,6 +77,7 @@ $app->get('/usuarios/validar/{objeto}', function ($request, $response, $args) {
 
 });
 
+
 $app->get('/usuarios/traer/{objeto}', function ($request, $response, $args) {
 
   $usuario=json_decode($args['objeto']);
@@ -84,34 +85,31 @@ $app->get('/usuarios/traer/{objeto}', function ($request, $response, $args) {
  
   $usuarioBuscado=Usuario::TraerUnUsuario($usuario->nombre_usuario);
  
-  var_dump(json_encode($usuarioBuscado));
+ return json_encode($usuarioBuscado);
+   
+ 
+});
+
+
+$app->post('/usuarios/alta/producto/{objeto}', function ($request, $response, $args) {
+
+  $producto=json_decode($args['objeto']);
+  
+ 
+  $usuarioBuscado=Producto::Insertar($producto);
+ 
+ return json_encode($usuarioBuscado);
    
  
 });
 
 
 
-
 /* POST: Para crear recursos */
 $app->post('/usuarios/alta/{objeto}', function ($request, $response, $args) {
     $persona=json_decode($args['objeto']);
-    $persona->foto=explode(';',$persona->foto);
-    $arrayFoto = array();
-    if(count($persona->foto) > 0){
-           // var_dump($persona);
-
-        for ($i = 0; $i < count($persona->foto); $i++ ){
-            $rutaVieja="fotos/".$persona->foto[$i];
-            $rutaNueva=$persona->dni. "_". $i .".".PATHINFO($rutaVieja, PATHINFO_EXTENSION);
-            copy($rutaVieja, "fotos/".$rutaNueva);
-            unlink($rutaVieja);
-            $arrayFoto[]="http://localhost:8080/pizzeriaTP/ws1/fotos/".$rutaNueva;
-        } 
-        $persona->foto=json_encode($arrayFoto); 
-    }
-    if($persona->perfil == "cliente"){
-          return $response->write(Cliente::InsertarCliente($persona)); 
-    }
+          return $response->write(Usuario::Insertar($persona)); 
+    
 });
 
 $app->post('/archivos', function ($request, $response, $args) {

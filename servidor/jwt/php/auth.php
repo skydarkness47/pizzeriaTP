@@ -3,19 +3,16 @@ include_once '../vendor/autoload.php';
 use \Firebase\JWT\JWT;
 $DatosPorPost = file_get_contents("php://input");
 
-
-
-$usuario =$DatosPorPost;
-print_r($usuario);
+$usuario =json_decode($DatosPorPost);
 
 
 	$ClaveDeEncriptacion="estaeslaclave";
 	//$key = "1234";
 	
-/*	$token["usuario"]=$usuario->nombre_usuario;
+$token["usuario"]=$usuario->nombre_usuario;
 	$token["clave"]=$usuario->pass_usuario;
 	$token["rol"]=$usuario->descripcion_rol;
-*/
+
  
 	$token["iat"]=time();//momento de creacion
 	$token["exp"]=time() + 20000000;

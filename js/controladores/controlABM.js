@@ -10,44 +10,33 @@ miApp.controller("controlABM",function($scope,$auth,$state,FileUploader,factoryL
   	$scope.persona.foto="pordefecto.png";
   	*///$scope.persona.foto="http://localhost:8080/Laboratorio-IV-2016/Clase.07/ws1/fotos/pordefecto.png";
 
+  
+	
+  $scope.Guardar=function(){
+    console.info($scope.tipologin);
+  		if($scope.tipologin === "CLIENTE")
+  	{
+  		$scope.usuario.rol=3;			
+  	}
+     if($scope.tipologin === "EMPLEADO")
+  	{
+  		$scope.usuario.rol=2;
+  	}
+     if($scope.tipologin === "ENGARCADO")
+  	{
+  		$scope.usuario.rol = 4;
+  	}
 
-	$scope.SubirdorArchivos.onCompleteAll = function(item, response, status, headers) {
-		$scope.usuario.perfil = $scope.tipologin;
-
-           
-           factoryLoginABM.Insertar(JSON.stringify($scope.usuario)) //+ JSON.stringify($scope.persona))
+  	
+  	   factoryLoginABM.Insertar(JSON.stringify($scope.usuario)) //+ JSON.stringify($scope.persona))
 			  .then(function(respuesta) {  
 			  console.log($scope.usuario);   	
 			 //aca se ejetuca si retorno sin errores 
 			 		console.info(respuesta);
 					 $state.go("menu.Grillas");
 				
-
-					},function errorCallback(response) {     		
-			//aca se ejecuta cuando hay errores
-					console.info(response);     			
-  		});
-        };
-
-
-
-
-  $scope.Guardar=function(){
-	if($scope.SubirdorArchivos.queue != undefined)
-	{
-		var nombreFoto="";
-		for (i in $scope.SubirdorArchivos.queue) {
-			if(nombreFoto != "")
-				nombreFoto = nombreFoto + ";" +($scope.SubirdorArchivos.queue[i]._file.name);
-			else
-				nombreFoto = ($scope.SubirdorArchivos.queue[i]._file.name);
-		}
-		$scope.usuario.foto=nombreFoto;
-		console.log($scope.usuario.foto);
-	}
-	$scope.SubirdorArchivos.uploadAll();
-  }
-
+	});
+}
 if($auth.isAuthenticated())
 $scope.user = $auth.getPayload();
 

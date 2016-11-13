@@ -31,7 +31,6 @@ factoryLoginABM.validarLogin($scope.usuario)
 
 factoryLoginABM.TraerObjeto($scope.usuario)
  		 	.then(function(respuesta) { 
- 		 		console.log(respuesta);
 			$auth.login(respuesta)
   				.then(function(response) {
 

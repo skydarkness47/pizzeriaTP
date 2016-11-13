@@ -1,51 +1,17 @@
 <?php
 require_once"accesoDatos.php";
-class Usuario
+class Producto
 {
 //--------------------------------------------------------------------------------//
 //--ATRIBUTOS
-	public $id_usuario;
-	public $nombre_usuario;
-	public $pass_usuario;
-	public $rol;
+	public $id;
+	public $nombre;
+	
 //--------------------------------------------------------------------------------//
 
 //--------------------------------------------------------------------------------//
 //--GETTERS Y SETTERS
-  	public function Getid_usuario()
-	{
-		return $this->id_usuario;
-	}
-	public function GetNombre_usuario()
-	{
-		return $this->nombre_usuario;
-	}
-	public function GetPass_usuario()
-	{
-		return $this->pass_usuario;
-	}
-	public function Getrol()
-	{
-		return $this->id_rol;
-	}
-	
-	public function Setid_usuario($parametro)
-	{
-		 $this->id_usuario = $parametro;
-	}
-	public function SetNombre_usuario($parametro)
-	{
-		$this->nombre_usuario = $parametro;
-	}
-	public function SetPass_usuario($parametro)
-	{
-		$this->pass_usuario = $parametro;
-	}
-	public function Setrol($parametro)
-	{
-		 $this->id_rol = $parametro;
-	}
-	
+  	
 
 	
 //--------------------------------------------------------------------------------//
@@ -130,15 +96,12 @@ class Usuario
 
 //--------------------------------------------------------------------------------//
 
-	public static function Insertar($persona)
+	public static function Insertar($producto)
 	{
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-		//$consulta =$objetoAccesoDato->RetornarConsulta("INSERT into persona (nombre,apellido,dni,foto)values(:nombre,:apellido,:dni,:foto)");
-		$consulta =$objetoAccesoDato->RetornarConsulta("INSERT into usuario (nombre_usuario,pass_usuario,rol)values(:nombre_usuario,:pass_usuario,:rol)");
-		$consulta->bindValue(':nombre',$persona->nombre_usuario, PDO::PARAM_STR);
-		$consulta->bindValue(':apellido', $persona->pass_usuario, PDO::PARAM_STR);
-		$consulta->bindValue(':dni', $persona->rol, PDO::PARAM_INT);
-
+		//$consulta =$objetoAccesoDato->RetornarConsulta("INSERT into producto (nombre,apellido,dni,foto)values(:nombre,:apellido,:dni,:foto)");
+		$consulta =$objetoAccesoDato->RetornarConsulta("INSERT into producto (nombre)values(:nombre)");
+		$consulta->bindValue(':nombre',$producto->nombre_usuario, PDO::PARAM_STR);
 		$consulta->execute();		
 		return $objetoAccesoDato->RetornarUltimoIdInsertado();
 	
@@ -148,42 +111,6 @@ class Usuario
 
 
 
-	public static function TraerPersonasTest()
-	{
-		$arrayDePersonas=array();
-
-		$persona = new stdClass();
-		$persona->id = "4";
-		$persona->nombre = "rogelio";
-		$persona->apellido = "agua";
-		$persona->dni = "333333";
-		$persona->foto = "333333.jpg";
-
-		//$objetJson = json_encode($persona);
-		//echo $objetJson;
-		$persona2 = new stdClass();
-		$persona2->id = "5";
-		$persona2->nombre = "Bañera";
-		$persona2->apellido = "giratoria";
-		$persona2->dni = "222222";
-		$persona2->foto = "222222.jpg";
-
-		$persona3 = new stdClass();
-		$persona3->id = "6";
-		$persona3->nombre = "Julieta";
-		$persona3->apellido = "Roberto";
-		$persona3->dni = "888888";
-		$persona3->foto = "888888.jpg";
-
-		$arrayDePersonas[]=$persona;
-		$arrayDePersonas[]=$persona2;
-		$arrayDePersonas[]=$persona3;
-		 
-		
-
-		return  $arrayDePersonas;
-				
-	}	
 
 
 }

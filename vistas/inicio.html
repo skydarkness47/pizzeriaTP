@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="css/style.css">
 
   
-<div ng-if="user.perfil == 'admin'" >
+<div ng-if="user.rol == 'ADMINISTRADOR'" >
 <nav class="dropdownmenu">
   <ul>
     <li><a ui-sref="inicio">INICIO</a></li>
@@ -20,7 +20,7 @@
 </div>
 
 
-<div ng-if="user.perfil != 'admin'"> 
+<div ng-if="user.rol != 'ADMINISTRADOR'"> 
 <nav class="dropdownmenu">
  <ul>
         <li><a ui-sref="inicio">INICIO</a></li>
