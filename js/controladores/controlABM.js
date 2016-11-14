@@ -30,10 +30,8 @@ miApp.controller("controlABM",function($scope,$auth,$state,FileUploader,factoryL
   	
   	   factoryLoginABM.Insertar(JSON.stringify($scope.usuario)) //+ JSON.stringify($scope.persona))
 			  .then(function(respuesta) {  
-			  console.log($scope.usuario);   	
 			 //aca se ejetuca si retorno sin errores 
-			 		console.info(respuesta);
-					 $state.go("menu.Grillas");
+					// $state.go("menu.Grillas");
 				
 	});
 }

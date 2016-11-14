@@ -66,8 +66,8 @@ $app->get('/usuarios/validar/{objeto}', function ($request, $response, $args) {
    $validador = false;   
    $arrAdmin = Usuario::TraerTodasLasPersonas();
    foreach ($arrAdmin as $adm) {
-        if($adm->mail == $usuario->mail)
-            if($adm->clave == $usuario->clave)
+        if($adm->nombre_usuario == $usuario->nombre_usuario)
+            if($adm->pass_usuario == $usuario->pass_usuario)
                  $validador=true;
 
    
@@ -78,7 +78,7 @@ $app->get('/usuarios/validar/{objeto}', function ($request, $response, $args) {
 });
 
 
-$app->get('/usuarios/traer/{objeto}', function ($request, $response, $args) {
+$app->post('/usuarios/traer/{objeto}', function ($request, $response, $args) {
 
   $usuario=json_decode($args['objeto']);
   
@@ -91,24 +91,17 @@ $app->get('/usuarios/traer/{objeto}', function ($request, $response, $args) {
 });
 
 
-$app->post('/usuarios/alta/producto/{objeto}', function ($request, $response, $args) {
 
-  $producto=json_decode($args['objeto']);
-  
- 
-  $usuarioBuscado=Producto::Insertar($producto);
- 
- return json_encode($usuarioBuscado);
-   
- 
-});
 
 
 
 /* POST: Para crear recursos */
-$app->post('/usuarios/alta/{objeto}', function ($request, $response, $args) {
-    $persona=json_decode($args['objeto']);
-          return $response->write(Usuario::Insertar($persona)); 
+$app->get('/usuarios/alta/{objeto}', function ($request, $response, $args) {
+ 
+
+   return $args;
+   /* var_dump($persona);
+          return $response->write(Usuario::Insertar($persona)); */
     
 });
 
