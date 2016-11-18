@@ -1,14 +1,12 @@
-
-miApp.service('ABM', function ($http,factoryRutas) {
+miApp.service('Login', function ($http,factoryRutas) {
         
 var Url = factoryRutas.ApiUrl;
 
-  this.Insertar = Insertar;
-  function Insertar(objeto){
-console.log(objeto);
-    return $http.get(Url + "/usuarios/alta/"+ objeto)
-      .then(function(respuesta) {
-      console.info(respuesta); 
+  this.validarLogin = validarLogin;
+  function validarLogin(objeto){
+
+    return $http.get(Url + "/usuarios/validar/" + objeto)
+      .then(function(respuesta) { 
        return respuesta.data
 
     })      // FIN DEL RETURN
@@ -18,10 +16,10 @@ console.log(objeto);
 
     this.TraerObjeto = TraerObjeto;
   function TraerObjeto(objeto){
-
-    return $http.get(Url +"/usuarios/validar/"+ objeto)
+    console.info(objeto);
+    return $http.get(Url +"/usuarios/traer/"+ objeto)
       .then(function(respuesta) { 
-      console.info(respuesta.data);    
+        console.info(respuesta);
        return respuesta.data
 
     })
@@ -39,8 +37,6 @@ console.log(objeto);
       return TraerTodos();
     });
    };
-
-   
 
 
 

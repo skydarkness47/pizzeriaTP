@@ -9,7 +9,6 @@ var Url = 'http://localhost:8080/pizzeriaTP/ws1/';
     {
     return $http.get(Url + 'clientes')
       .then(function(respuesta) { 
-      console.info(respuesta.data);    
        return respuesta.data
 
     }) // FIN DEL RETURN

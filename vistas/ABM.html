@@ -1,5 +1,6 @@
 
   <link rel="stylesheet" href="css/style.css">
+      <link rel="stylesheet" href="css/style_login.css">
 
 
 <div ng-if="user.usuario == 'admin'" >
@@ -45,10 +46,10 @@
     <div id="header">
           
          </div>
-         <input type="text" value="" placeholder="ingrese el usuario" ng-model="usuario.nombre" required />
+         <input type="text" value="" placeholder="ingrese el usuario" ng-model="usuario.nombre_usuario" required />
         </p>
          <p>
-         <input type="text" value="" placeholder="ingrese la clave" ng-model="usuario.clave" required />
+         <input type="text" value="" placeholder="ingrese la clave" ng-model="usuario.pass_usuario" required />
                 <h1>seleccione tipo de alta</h1>
           <select name="multipleSelect"  ng-model="tipologin" value="hola">
           <option selected="selected" >SELECCIONAR</option>

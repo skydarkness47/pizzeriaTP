@@ -13,10 +13,9 @@ else
 
 $scope.IniciarSeccion = function(){
 
-console.log($scope.usuario);
-	$scope.usuario = JSON.stringify($scope.usuario);
+
 	
-factoryLoginABM.validarLogin($scope.usuario)
+factoryLoginABM.validarLogin(JSON.stringify($scope.usuario))
  .then(function(respuesta) {    
  	
 
@@ -29,7 +28,7 @@ factoryLoginABM.validarLogin($scope.usuario)
 				console.log("entro");
 			
 
-factoryLoginABM.TraerObjeto($scope.usuario)
+factoryLoginABM.TraerObjeto(JSON.stringify($scope.usuario))
  		 	.then(function(respuesta) { 
 			$auth.login(respuesta)
   				.then(function(response) {

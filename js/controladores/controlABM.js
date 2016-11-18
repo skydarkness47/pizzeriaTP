@@ -16,15 +16,15 @@ miApp.controller("controlABM",function($scope,$auth,$state,FileUploader,factoryL
     console.info($scope.tipologin);
   		if($scope.tipologin === "CLIENTE")
   	{
-  		$scope.usuario.rol=3;			
+  		$scope.usuario.id_rol=3;			
   	}
      if($scope.tipologin === "EMPLEADO")
   	{
-  		$scope.usuario.rol=2;
+  		$scope.usuario.id_rol=2;
   	}
      if($scope.tipologin === "ENGARCADO")
   	{
-  		$scope.usuario.rol = 4;
+  		$scope.usuario.id_rol = 4;
   	}
 
   	

@@ -1,12 +1,14 @@
-miApp.service('Login', function ($http,factoryRutas) {
+
+miApp.service('ABM', function ($http,factoryRutas) {
         
 var Url = factoryRutas.ApiUrl;
 
-  this.validarLogin = validarLogin;
-  function validarLogin(objeto){
-
-    return $http.get(Url + "/usuarios/validar/" + objeto)
-      .then(function(respuesta) { 
+  this.Insertar = Insertar;
+  function Insertar(objeto){
+console.log(objeto);
+    return $http.post(Url + "usuarios/alta/"+ objeto)
+      .then(function(respuesta) {
+      console.info(respuesta); 
        return respuesta.data
 
     })      // FIN DEL RETURN
@@ -16,9 +18,9 @@ var Url = factoryRutas.ApiUrl;
 
     this.TraerObjeto = TraerObjeto;
   function TraerObjeto(objeto){
-
-    return $http.get(Url +"/usuarios/traer/"+ objeto)
+    return $http.get(Url +"usuarios/validar/"+ objeto)
       .then(function(respuesta) { 
+      console.info(respuesta.data);    
        return respuesta.data
 
     })
@@ -36,6 +38,8 @@ var Url = factoryRutas.ApiUrl;
       return TraerTodos();
     });
    };
+
+   
 
 
 

@@ -15,6 +15,18 @@ miApp.controller("controlGrillas",function($scope,Grilla,$state,$http,$auth){
 		     	});
 
 */
+
+        $scope.usuario = $auth.getPayload();
+        // Objeto de configuracion de la grilla.
+        $scope.gridOptions = {};
+        $scope.gridOptions.enableCellEditOnFocus = true;
+        $scope.gridOptions.enableCellEdit = true;
+        $scope.gridOptions.paginationPageSizes = [25, 50, 75];
+        // Configuracion de la paginacion
+        $scope.gridOptions.paginationPageSize = 25;
+         $scope.gridOptions.columnDefs = columComprador();
+          //$scope.gridOptions.data = respuesta;
+
 		$scope.Desloguear = function(){
 
 			$auth.logout();
@@ -63,5 +75,21 @@ miApp.controller("controlGrillas",function($scope,Grilla,$state,$http,$auth){
 			{
 				$state.go("modificacion", persona);
 			};
+
+
+   function columComprador() {
+            return [{
+                    field: 'id',
+                    name: 'id'
+                }, {
+                    field: 'nombre',
+                    name: 'nombre'
+                },{
+                field: 'precio',
+                name: 'precio'
+            }
+
+            ];
+        }
 
 })
