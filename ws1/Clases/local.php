@@ -60,6 +60,7 @@ class Local
     
 	public static function BorrarLocal($idParametro)
 	{	
+		
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		$consulta = $objetoAccesoDato->RetornarConsulta("delete from local WHERE id_local =:id");	
 		$consulta->bindValue(':id',$idParametro, PDO::PARAM_INT);		

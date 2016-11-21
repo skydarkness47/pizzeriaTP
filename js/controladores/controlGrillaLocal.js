@@ -5,7 +5,16 @@ miApp.controller('grillaLocal', function($scope, i18nService, uiGridConstants,$a
 
 
 
+$scope.BorrarLocal = function(row){
 
+factoryLocal.BorrarLocal(JSON.stringify(row.id_local))
+                .then(function(respuesta) {
+                  $scope.gridOptions.data= respuesta;
+                    console.log(respuesta);
+             
+                });
+
+}
 
         $scope.usuario = $auth.getPayload();
         // Objeto de configuracion de la grilla.
@@ -38,7 +47,9 @@ function columDefs () {
 
         {field: 'latitud_local', name: 'latitud'},
         {field: 'longitud_local', name: 'longitud'},
-
+        { width: 100, cellTemplate:"<button ng-Click='grid.appScope.ModificarLocal(row.entity)'>MODIFICAR", name:"MostrarLongitud"
+        },{ width: 100, cellTemplate:"<button ng-Click='grid.appScope.BorrarLocal(row.entity)'>BORRAR", name:"MostrarLongitud"
+        }
 
        
         ];

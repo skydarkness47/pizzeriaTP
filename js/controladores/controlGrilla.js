@@ -87,7 +87,9 @@ miApp.controller("controlGrillas",function($scope,Grilla,$state,$http,$auth){
                 },{
                 field: 'precio',
                 name: 'precio'
-            }
+            },{ width: 100, cellTemplate:"<button ng-Click='grid.appScope.ModificarLocal(row.entity)'>MODIFICAR", name:"MostrarLongitud"
+              },{ width: 100, cellTemplate:"<button ng-Click='grid.appScope.BorrarLocal(row.entity)'>BORRAR", name:"MostrarLongitud"
+        	  },
 
             ];
         }

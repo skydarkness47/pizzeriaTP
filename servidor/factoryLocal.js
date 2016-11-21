@@ -3,6 +3,7 @@ objeto = {};
    objeto.nombre = "factory de login y abm";
   objeto.InsertarLocal = InsertarLocal;
 objeto.TraerTodosLosLocales=TraerTodosLosLocales;
+objeto.BorrarLocal = BorrarLocal;
    return objeto;
 
 
@@ -19,5 +20,10 @@ objeto.TraerTodosLosLocales=TraerTodosLosLocales;
 
   }
 
+  function BorrarLocal(id)
+  {
+        return Grilla.BorrarLocal(id);
+
+  }
 
 })

@@ -13,7 +13,7 @@ factoryLocal.InsertarLocal(JSON.stringify($scope.local)) //+ JSON.stringify($sco
 			  .then(function(respuesta) {     	
 			 //aca se ejetuca si retorno sin errores 
 			 		console.info(respuesta);
-					 $state.go("local.Grilla");
+					 $state.go("menu.GrillaLocal");
 				
 
 					},function errorCallback(response) {     		

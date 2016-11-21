@@ -28,13 +28,13 @@ this.TraerTodosLosLocales =TraerTodosLosLocales;
 
 
 
-    this.BorrarObjeto = BorrarObjeto;
-
-   function BorrarObjeto(id){
+    this.BorrarLocal = BorrarLocal;
+   function BorrarLocal(id){
     console.info(id);
-    return $http.delete(Url + "personas/" + id) 
+    return $http.delete(Url + "local/BorrarLocal/" + id) 
     .then(function(respuesta) {
-      return TraerTodos();
+      console.info(respuesta);
+      return TraerTodosLosLocales();
     });
    };
 
