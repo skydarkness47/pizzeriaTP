@@ -1,0 +1,93 @@
+
+  <link rel="stylesheet" href="css/style.css">
+      <link rel="stylesheet" href="css/style_login.css">
+
+
+<nav class="dropdownmenu">
+  <ul>
+    <li><a ui-sref="menu.inicio">INICIO</a></li>
+    <li><a >SOBRE NOSOTROS</a></li>
+    <li><a href="#">SUCURSALES</a>    </li>
+    <li><a >CONTACTENOS</a></li>
+     <li><a ui-sref="menu.ABM">ALTA USUARIOS</a></li>
+     <li><a ui-sref="menu.AltaLocal">ALTA LOCAL</a></li>
+     <li><a ui-sref="Deslogueo()" >DESLOGUEARSE</a></li>
+     <li><a ui-sref="menu.Grillas" >GRILLA USUARIOS</a></li>
+     <li><a ui-sref="menu.GrillaLocal" >GRILLA LOCALES</a></li>
+
+  </ul>
+</nav>
+</div>
+
+<br>
+<br>
+<br>
+      <link rel="stylesheet" href="css/style_login.css">
+    <link rel="stylesheet" href="css/style.css">
+
+         <body class="collage none-bg">
+   </head>
+
+      <div id="header">
+            <h1 class="name-title">
+            ALTA LOCALES
+          </h1>
+         </div>
+</body>
+</html>
+
+     <div class="container"  align= "center" name="divLogeo" id="divLogueo"  >
+
+    <form name="formIngreso" id="formIngreso" enctype="multipart/form-data" ng-submit="enviar" >
+
+    <div id="header">
+          
+         </div>
+          <input type="text" value="" placeholder="ingrese el nombre del local" ng-model="local.nombre_local" required />
+        </p>
+         <p>
+         <input type="text" value="" placeholder="ingrese la direccion del local" ng-model="local.direccion_local" required />
+        </p>
+         <p>
+          <input type="text" value="" placeholder="ingrese la latitud del local" ng-model="local.latitud_local" required />
+        </p>
+         <p>
+             <input type="text" value="" placeholder="ingrese la longitud del local" ng-model="local.longitud_local" required />
+        </p>
+         <p>
+                   <input type="file" nv-file-select="" uploader="SubirdorArchivos" multiple  /><br/>
+
+    <li ng-repeat="item in SubirdorArchivos.queue">
+          <!-- nombre del archivo -->
+          Archivo: <span ng-bind="item.file.name"></span><br/>
+          <!-- imagen del archivo -->
+          <div ng-show="SubirdorArchivos.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+      
+        
+          <!-- boton cancel -->            
+          <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+            <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+          </button>
+
+          <!-- boton remove -->
+          <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+            <span class="glyphicon glyphicon-trash"></span> Remove
+          </button>
+        </li>  
+        <img  ng-if="SubirdorArchivos.queue==0" ng-src="{{local.foto_local}}" class="fotoform" id="foto" />
+
+       <button  name="guardar" ng-disabled="FormIngreso.$invalid"  ng-click="Guardar()" ></span>Guardar</a> 
+          
+        <input type="hidden" value="" id="idParaModificar" name="agregar" />
+        <input type="hidden" value="" id="hdnAgregar" name="agregar" />
+        </div>
+
+      </form>  
+        
+          
+       
+
+        </div>
+      
+
+</body>

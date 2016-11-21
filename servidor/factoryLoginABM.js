@@ -25,6 +25,7 @@ objeto = {};
     return ABM.Insertar(parametro);
 
   }
+  
 
   function ApiArchivos(){
     return factoryRutas.ApiUrl + "archivos";

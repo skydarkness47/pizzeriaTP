@@ -3,8 +3,8 @@ miApp.config(function($stateProvider,$urlRouterProvider,$authProvider){
 $authProvider.loginUrl = 'pizzeriaTP/servidor/jwt/php/auth.php';
 $authProvider.signupUrl = '/auth/signup';
 $authProvider.unlinkUrl = '/auth/unlink/';
-$authProvider.tokenName = 'TokenNameAxelCores';
-$authProvider.tokenPrefix = 'AngularABM';
+$authProvider.tokenName = 'pizzeriaTP';
+$authProvider.tokenPrefix = 'usuario';
 $authProvider.authHeader = 'data';
 $authProvider.tokenHeader = 'Authorization';
 $authProvider.httpInterceptor = function() { return true; },
@@ -71,6 +71,24 @@ $stateProvider
 					"contenido":{
 					templateUrl:"vistas/grillas.html",
 					controller:"controlGrillas"
+						}
+				}
+			}).state(
+			"menu.AltaLocal",{
+				url:"/altaLocal",
+				views: {
+					"contenido":{
+					templateUrl:"vistas/altaLocal.html",
+					controller:"altaLocal"
+						}
+				}
+			}).state(
+			"menu.GrillaLocal",{
+				url:"/GrillaLocal",
+				views: {
+					"contenido":{
+					templateUrl:"vistas/grillaLocal.html",
+					controller:"grillaLocal"
 						}
 				}
 			})

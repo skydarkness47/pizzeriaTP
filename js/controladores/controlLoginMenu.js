@@ -30,10 +30,10 @@ factoryLoginABM.validarLogin(JSON.stringify($scope.usuario))
 
 factoryLoginABM.TraerObjeto(JSON.stringify($scope.usuario))
  		 	.then(function(respuesta) { 
+ 		 	console.info(respuesta);
 			$auth.login(respuesta)
   				.then(function(response) {
-
-  					console.info(response);
+  				console.info($auth.isAuthenticated());
  			 		if($auth.isAuthenticated()){
 				  			$state.go("inicio");
 							console.info("Token Validado", $auth.getPayload());

@@ -33,7 +33,6 @@ miApp.controller("controlLogin",function($scope,$state,$auth,$http){
 							$datos = respuesta.data;
 							$scope.usuario.tipo =$datos;
 							console.info($scope.usuario);	
-									
 							$auth.login($scope.usuario)
 				  			.then(function(response) {
 				  				console.info(response);

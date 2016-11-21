@@ -7,7 +7,7 @@ class Usuario
 	public $id_usuario;
 	public $nombre_usuario;
 	public $pass_usuario;
-	public $rol;
+	public $id_rol;
 //--------------------------------------------------------------------------------//
 
 //--------------------------------------------------------------------------------//
@@ -90,7 +90,7 @@ class Usuario
 	{
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		//$consulta =$objetoAccesoDato->RetornarConsulta("select * from persona");
-	$consulta =$objetoAccesoDato->RetornarConsulta("select id_usuario,nombre_usuario as nombre_usuario, pass_usuario as pass_usuario , id_rol as id_rol from usuario");
+	$consulta =$objetoAccesoDato->RetornarConsulta("SELECT * FROM usuario usu JOIN rol ro ON usu.id_rol=ro.id_rol WHERE 1");
 		$consulta->execute();			
 		$arrEmpleado= $consulta->fetchAll(PDO::FETCH_CLASS, "Usuario");	
 		return $arrEmpleado;

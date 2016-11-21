@@ -3,20 +3,29 @@ miApp.service('Grilla', function ($http) {
 var Url = 'http://localhost:8080/pizzeriaTP/ws1/';
 
   this.TraerTodos = TraerTodos;
-  function TraerTodos(queTraer){
+  function TraerTodos(){
 
-    if(queTraer == "CLIENTES")
-    {
-    return $http.get(Url + 'clientes')
+    return $http.get(Url + 'usuarios')
       .then(function(respuesta) { 
        return respuesta.data
 
-    }) // FIN DEL RETURN
+    });// FIN DEL RETURN
 
 
-  }//FIN IF QUE TRAER CLIENTES
+  };//FIN IF QUE TRAER CLIENTES
 
-  }; // FIN DE LA FUNCION TRAER
+this.TraerTodosLosLocales =TraerTodosLosLocales;
+ function TraerTodosLosLocales(){
+
+    return $http.get(Url + 'locales')
+      .then(function(respuesta) { 
+       return respuesta.data
+
+    });// FIN DEL RETURN
+
+
+  };//FIN IF QUE TRAER CLIENTES
+
 
 
     this.BorrarObjeto = BorrarObjeto;

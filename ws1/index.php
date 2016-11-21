@@ -1,6 +1,7 @@
 <?php
 require_once('Clases/AccesoDatos.php');
 require_once('Clases/personas.php');
+require_once('Clases/local.php');
 
 require 'vendor/autoload.php';
 
@@ -57,6 +58,29 @@ $app->get('/usuarios/validar/{objeto}', function ($request, $response, $args) {
 });
 
 
+$app->get('/usuarios', function ($request, $response, $args) {
+
+ 
+   $arrAdmin = Usuario::TraerTodasLasPersonas();
+
+
+   
+   return json_encode($arrAdmin);
+
+
+});
+$app->get('/locales', function ($request, $response, $args) {
+
+ 
+   $arrAdmin = Local::TraerTodasLosLocales();
+
+
+   
+   return json_encode($arrAdmin);
+
+
+});
+
 $app->get('/usuarios/traer/{objeto}', function ($request, $response, $args) {
 
   $usuario=json_decode($args['objeto']);
@@ -67,18 +91,6 @@ $app->get('/usuarios/traer/{objeto}', function ($request, $response, $args) {
  return json_encode($usuarioBuscado);
    
  
-});
-
-
-
-
-
-
-/* POST: Para crear recursos */
-$app->post('/usuarios/alta/{objeto}', function ($request, $response, $args) {
-
-          return $response->write(Usuario::Insertar(json_decode($args['objeto']))); 
-    
 });
 
 $app->post('/archivos', function ($request, $response, $args) {
@@ -94,6 +106,37 @@ $app->post('/archivos', function ($request, $response, $args) {
 }
     return $response;
 });
+
+
+
+/* POST: Para crear recursos */
+$app->post('/local/alta/{objeto}', function ($request, $response, $args) {
+
+$local=json_decode($args['objeto']);
+    $local->foto_local=explode(';',$local->foto_local);
+    $arrayFoto = array();
+    if(count($local->foto_local) > 0){
+        for ($i = 0; $i < count($local->foto_local); $i++ ){
+            $rutaVieja="fotos/".$local->foto_local[$i];
+            $rutaNueva=$local->nombre_local. "_". $i .".".PATHINFO($rutaVieja, PATHINFO_EXTENSION);
+            copy($rutaVieja, "fotos/".$rutaNueva);
+            unlink($rutaVieja);
+            $arrayFoto[]="http://localhost:8080/pizzeriaTP/ws1/fotos/".$rutaNueva;
+        } 
+        $local->foto_local=json_encode($arrayFoto); 
+
+    }
+          return $response->write(Local::InsertarLocal($local)); 
+    
+});
+
+$app->post('/usuarios/alta/{objeto}', function ($request, $response, $args) {
+
+          return $response->write(Usuario::Insertar(json_decode($args['objeto']))); 
+    
+});
+
+
 
 // /* PUT: Para editar recursos */
 $app->put('/personas/{objeto}', function ($request, $response, $args) {

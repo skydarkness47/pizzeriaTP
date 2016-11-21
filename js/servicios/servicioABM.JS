@@ -40,7 +40,17 @@ console.log(objeto);
    };
 
    
+  this.InsertarLocal = InsertarLocal;
+  function InsertarLocal(objeto){
+    return $http.post(Url + "local/alta/"+ objeto)
+      .then(function(respuesta) {
+      console.info(respuesta); 
+       return respuesta.data
 
+    })      // FIN DEL RETURN
+
+
+  }//FIN IF QUE TRAER CLIENTES
 
 
   })

@@ -5,8 +5,7 @@ $DatosPorPost = file_get_contents("php://input");
 
 $usuario =json_decode($DatosPorPost);
 
-
-	$ClaveDeEncriptacion="estaeslaclave";
+	$ClaveDeEncriptacion="pizzeria";
 	//$key = "1234";
 	
 $token["usuario"]=$usuario->nombre_usuario;
@@ -19,7 +18,7 @@ $token["usuario"]=$usuario->nombre_usuario;
 	$jwt = JWT::encode($token, $ClaveDeEncriptacion);
 
 
-$ArrayConToken["TokenNameAxelCores"]=$jwt;
+$ArrayConToken["pizzeriaTP"]=$jwt;
 echo json_encode($ArrayConToken);
 
 ?>

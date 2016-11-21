@@ -1,6 +1,6 @@
-miApp.controller('controlGrillas', function($scope, Grilla, i18nService, uiGridConstants,$auth,factoryGrilla) {
+miApp.controller('grillaLocal', function($scope, i18nService, uiGridConstants,$auth,factoryLocal) {
     $scope.titulo = "Configuracion Campos";
-    console.info(Grilla);
+    console.info(factoryLocal);
 
 
 
@@ -21,7 +21,7 @@ miApp.controller('controlGrillas', function($scope, Grilla, i18nService, uiGridC
     // Configuracion del idioma.
     i18nService.setCurrentLang('es');
 
-  factoryGrilla.TraerTodos()
+  factoryLocal.TraerTodosLosLocales()
                 .then(function(respuesta) {
                   $scope.gridOptions.data= respuesta;
                     console.log(respuesta);
@@ -31,10 +31,13 @@ miApp.controller('controlGrillas', function($scope, Grilla, i18nService, uiGridC
 
 function columDefs () {
   return [
-          { field: 'id_usuario', name: 'id'},
+          { field: 'id_local', name: 'id'},
 
-        { field: 'nombre_usuario', name: 'nombre'},
-        {field: 'descripcion_rol', name: 'rol'},
+        { field: 'nombre_local', name: 'nombre'},
+        {field: 'direccion_local', name: 'direccion'},
+
+        {field: 'latitud_local', name: 'latitud'},
+        {field: 'longitud_local', name: 'longitud'},
 
 
        
