@@ -133,7 +133,10 @@ class Usuario
 	public static function Insertar($persona)
 	{
 		
+	
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+
+	
 		//$consulta =$objetoAccesoDato->RetornarConsulta("INSERT into persona (nombre,apellido,dni,foto)values(:nombre,:apellido,:dni,:foto)");
 		$consulta =$objetoAccesoDato->RetornarConsulta("INSERT into usuario (nombre_usuario,pass_usuario,id_rol)values(:nombre_usuario,:pass_usuario,:id_rol)");
 		$consulta->bindValue(':nombre_usuario',$persona->nombre_usuario, PDO::PARAM_STR);

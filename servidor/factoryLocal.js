@@ -22,6 +22,7 @@ objeto.BorrarLocal = BorrarLocal;
 
   function BorrarLocal(id)
   {
+    console.info(id);
         return Grilla.BorrarLocal(id);
 
   }

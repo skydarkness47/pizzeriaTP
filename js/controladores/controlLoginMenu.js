@@ -11,6 +11,10 @@ if($auth.isAuthenticated())
 else
 	console.info("No Token",$auth.getPayload());
 
+$scope.RegistroClientes =function(){
+	$state.go("menu.ABM");
+}
+
 $scope.IniciarSeccion = function(){
 
 

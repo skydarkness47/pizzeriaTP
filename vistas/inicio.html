@@ -21,6 +21,18 @@
 
 </div>
 
+<div ng-if="user.rol == 'CLIENTE'" >
+<nav class="dropdownmenu">
+  <ul>
+    <li><a ui-sref="inicio">INICIO</a></li>
+    <li><a >SOBRE NOSOTROS</a></li>
+    <li><a href="#">SUCURSALES</a>    </li>
+    <li><a >CONTACTENOS</a></li>
+   
+
+     <h1>HOLA {{user.usuario}}</h1>
+
+</div>
 
 <div ng-if="user.rol != 'ADMINISTRADOR'"> 
 <nav class="dropdownmenu">

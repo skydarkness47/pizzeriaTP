@@ -33,6 +33,7 @@ class Local
 	
     public static function InsertarLocal($Local)
 	{
+		var_dump($Local);
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		$consulta =$objetoAccesoDato->RetornarConsulta("insert into local ( nombre_local, direccion_local, latitud_local, longitud_local, foto_local) 
 		VALUES (:nombre_local,:direccion_local,:latitud_local,:longitud_local,:foto_local)");

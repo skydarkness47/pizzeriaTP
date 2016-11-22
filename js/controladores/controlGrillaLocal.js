@@ -47,11 +47,12 @@ function columDefs () {
 
         {field: 'latitud_local', name: 'latitud'},
         {field: 'longitud_local', name: 'longitud'},
+        
         { width: 100, cellTemplate:"<button ng-Click='grid.appScope.ModificarLocal(row.entity)'>MODIFICAR", name:"MostrarLongitud"
         },{ width: 100, cellTemplate:"<button ng-Click='grid.appScope.BorrarLocal(row.entity)'>BORRAR", name:"MostrarLongitud"
         }
 
-       
+
         ];
     }
 

@@ -28,10 +28,24 @@ miApp.controller("controlABM",function($scope,$auth,$state,FileUploader,factoryL
   	}
 
   	
+    if(!$auth.isAuthenticated())
+    {
+      console.info("entre");
+      $scope.usuario.id_rol = 3;
+    }
   	   factoryLoginABM.Insertar(JSON.stringify($scope.usuario)) //+ JSON.stringify($scope.persona))
-			  .then(function(respuesta) {  
-			 //aca se ejetuca si retorno sin errores 
-					// $state.go("menu.Grillas");
+			  .then(function(respuesta) {
+
+			 if(!$auth.isAuthenticated())
+            {
+            alert("SE DIO DE ALTA CORRECTAMENTE! SERA REDIRECCIONADO PARA EL LOGIN"); 
+              $state.go("menu.login");
+            }else{
+              alert("SE DIO DE ALTA CORRECTAMENTE!"); 
+                $state.go("menu.Grillas");
+            }
+
+
 				
 	});
 }
