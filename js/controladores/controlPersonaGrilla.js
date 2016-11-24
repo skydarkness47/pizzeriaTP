@@ -1,6 +1,6 @@
 miApp.controller('controlGrillas', function($scope, Grilla, i18nService, uiGridConstants,$auth,factoryGrilla) {
     $scope.titulo = "Configuracion Campos";
-    console.info(Grilla);
+    
 
 
   $scope.Deslogueo = function(){
@@ -10,9 +10,51 @@ miApp.controller('controlGrillas', function($scope, Grilla, i18nService, uiGridC
       }
 
 
+$scope.usuario = $auth.getPayload();
 
 
-        $scope.usuario = $auth.getPayload();
+ factoryGrilla.TraerTodos()
+                .then(function(respuesta) {
+                  $scope.gridOptions.data= respuesta;
+             
+                });
+$scope.borrarUsuario= function(obj){
+   factoryGrilla.borrarUsuario(obj.id_usuario)
+                .then(function(respuesta) {
+                  $scope.gridOptions.data= respuesta;
+             
+                });              
+      }
+
+
+if($scope.usuario.rol === "ADMINISTRADOR")
+{
+    function columDefs () {
+      return [
+              { field: 'id_usuario', name: 'id'},
+
+            { field: 'nombre_usuario', name: 'nombre'},
+            {field: 'descripcion_rol', name: 'rol'},
+            { width: 100, cellTemplate:"<button ng-Click='grid.appScope.borrarUsuario(row.entity)'>Borrar", name:"MostrarAmigos"},
+            { width: 100, cellTemplate:"<button ng-Click='grid.appScope.Modificar(row.entity)'>Modificar", name:"GpsAmigos"  }
+
+           
+            ];
+        }
+}else{
+  function columDefs () {
+      return [
+              { field: 'id_usuario', name: 'id'},
+
+            { field: 'nombre_usuario', name: 'nombre'},
+            {field: 'descripcion_rol', name: 'rol'},
+         
+           
+            ];
+        }
+}
+
+        
         // Objeto de configuracion de la grilla.
         $scope.gridOptions = {};
         $scope.gridOptions.enableCellEditOnFocus = true;
@@ -26,25 +68,10 @@ miApp.controller('controlGrillas', function($scope, Grilla, i18nService, uiGridC
     // Configuracion del idioma.
     i18nService.setCurrentLang('es');
 
-  factoryGrilla.TraerTodos()
-                .then(function(respuesta) {
-                  $scope.gridOptions.data= respuesta;
-                    console.log(respuesta);
-             
-                });
+ 
 
 
-function columDefs () {
-  return [
-          { field: 'id_usuario', name: 'id'},
-
-        { field: 'nombre_usuario', name: 'nombre'},
-        {field: 'descripcion_rol', name: 'rol'},
-
-
-       
-        ];
-    }
 
   
-  })
+  
+})

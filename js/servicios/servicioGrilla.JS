@@ -38,6 +38,13 @@ this.TraerTodosLosLocales =TraerTodosLosLocales;
     });
    };
 
-
+    this.borrarUsuario = borrarUsuario;
+   function borrarUsuario(id){
+    console.info(id);
+    return $http.delete(Url + "usuarios/borrar/" + id) 
+    .then(function(respuesta) {
+      return TraerTodosLosLocales();
+    });
+   };
 
   })

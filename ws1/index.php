@@ -54,17 +54,7 @@ $app->get('/usuarios', function ($request, $response, $args) {
 
 
 });
-$app->get('/locales', function ($request, $response, $args) {
 
- 
-   $arrAdmin = Local::TraerTodasLosLocales();
-
-
-   
-   return json_encode($arrAdmin);
-
-
-});
 
 $app->get('/usuarios/traer/{objeto}', function ($request, $response, $args) {
 
@@ -76,6 +66,17 @@ $app->get('/usuarios/traer/{objeto}', function ($request, $response, $args) {
  return json_encode($usuarioBuscado);
    
  
+});
+
+$app->delete('/usuarios/borrar/{objeto}', function ($request, $response, $args) {
+        
+        $usuario=json_encode($args['objeto']);  
+        
+         $usuario = preg_replace('([^A-Za-z0-9])', '', $usuario);
+
+
+          return Usuaurio::BorrarUsuario($usuario); 
+    
 });
 
 $app->post('/archivos', function ($request, $response, $args) {
@@ -93,6 +94,17 @@ $app->post('/archivos', function ($request, $response, $args) {
 });
 
 
+$app->get('/locales', function ($request, $response, $args) {
+
+ 
+   $arrAdmin = Local::TraerTodasLosLocales();
+
+
+   
+   return json_encode($arrAdmin);
+
+
+});
 
 /* POST: Para crear recursos */
 $app->post('/local/alta/{objeto}', function ($request, $response, $args) {

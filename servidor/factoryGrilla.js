@@ -5,6 +5,7 @@ var objeto = {};
   objeto.TraerTodosUsuarios= TraerTodosUsuarios;
   objeto.borrarUsuario = borrarUsuario;
   objeto.ModificarUsuario = ModificarUsuario;
+  objeto.borrarUsuario = borrarUsuario;
    return objeto;
 
    function TraerTodos()
