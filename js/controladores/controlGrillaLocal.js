@@ -30,9 +30,10 @@ factoryLocal.BorrarLocal(JSON.stringify(row.id_local))
         $scope.gridOptions.paginationPageSizes = [25, 50, 75];
             $scope.gridOptions.enableFiltering = true;
         // Configuracion de la paginacion
-        $scope.gridOptions.paginationPageSize = 25;
-     //    $scope.gridOptions.columnDefs = columDefs();
-  //  $scope.gridOptions.enableFiltering = true;
+       $scope.gridOptions.paginationPageSize = 25;
+    
+    //   $scope.gridOptions.columnDefs = columDefs();
+   $scope.gridOptions.enableFiltering = true;
     // Configuracion del idioma.
     i18nService.setCurrentLang('es');
 
@@ -43,7 +44,10 @@ factoryLocal.BorrarLocal(JSON.stringify(row.id_local))
              
                 });
 
-if($scope.user.rol === "ADMINISTRADOR"){
+console.info($scope.user.rol);
+
+
+if($scope.user.rol === 'ADMINISTRADOR'){
 
 function columDefs () {
   return [
@@ -66,7 +70,6 @@ function columDefs () {
   }
 
    if($scope.user.rol != "ADMINISTRADOR"){
-alert("estoy en cliente");
 function columDefs () {
   return [
           { field: 'id_local', name: 'id'},
