@@ -5,6 +5,7 @@
 
 <nav class="dropdownmenu">
   <ul>
+  <div ng-if="user.rol == 'ADMINISTRADOR'" >
     <li><a ui-sref="menu.inicio">INICIO</a></li>
     <li><a >SOBRE NOSOTROS</a></li>
     <li><a href="#">SUCURSALES</a>    </li>
@@ -20,23 +21,34 @@
 </nav>
 </div>
 
+<div ng-if="user.rol != 'ADMINISTRADOR'" >
+<nav class="dropdownmenu">
+  <ul>
+    <li><a ui-sref="inicio">INICIO</a></li>
+    <li><a ui-sref="menu.GrillaLocal">LOCALES</a></li>
+    <li><a href="#">OFERTAS</a>    </li>
+    <li><a >RESERVAS</a></li>
+       <li><a ui-sref="Deslogueo()">DESLOGUEO</a></li>
+    </ul>
+</div>
+
 <br>
 <br>
 <br>
   <div id="header">
             <h1 class="name-title">
-            GRILLA DE LOCALES
           </h1>
          </div>
 
          <body class="collage none-bg">
    </head>      
-</body>
-</html>
 
- <div ui-grid="gridOptions" class="myGrid"
+    <div ui-grid="gridOptions" class="myGrid"
     ui-grid-pagination
     ui-grid-resize-columns
   >
 </div>
-  <ul>
+  
+</body>
+</html>
+

@@ -16,6 +16,12 @@ miApp.controller("controlGrillas",function($scope,Grilla,$state,$http,$auth){
 
 */
 
+	$scope.Desloguear = function(){
+
+				$auth.logout();
+				$state.go("login.menu");
+			}
+			
         $scope.usuario = $auth.getPayload();
         // Objeto de configuracion de la grilla.
         $scope.gridOptions = {};

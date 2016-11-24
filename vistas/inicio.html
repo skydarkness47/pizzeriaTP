@@ -16,7 +16,8 @@
     <li><a ui-sref="Deslogueo()">DESLOGUEARSE</a></li>
     <li><a ui-sref="menu.Grillas">GRILLAS USUARIOS</a></li>
      <li><a ui-sref="menu.GrillaLocal" >GRILLA LOCALES</a></li>
-
+</ul>
+</nav>
      <h1>HOLA {{user.usuario}}</h1>
 
 </div>
@@ -25,26 +26,23 @@
 <nav class="dropdownmenu">
   <ul>
     <li><a ui-sref="inicio">INICIO</a></li>
-    <li><a >SOBRE NOSOTROS</a></li>
-    <li><a href="#">SUCURSALES</a>    </li>
-    <li><a >CONTACTENOS</a></li>
-   
-
-     <h1>HOLA {{user.usuario}}</h1>
-
+    <li><a ui-sref="menu.GrillaLocal">LOCALES</a></li>
+    <li><a href="#">OFERTAS</a>    </li>
+    <li><a >RESERVAS</a></li>
+           <li><a ui-sref="Deslogueo()">DESLOGUEO</a></li>
+       <h1>HOLA {{user.usuario}}</h1>
 </div>
 
-<div ng-if="user.rol != 'ADMINISTRADOR'"> 
+<div ng-if="user == null"> 
 <nav class="dropdownmenu">
  <ul>
-        <li><a ui-sref="inicio">INICIO</a></li>
-    <li><a href="http://www.jochaho.com/wordpress/about-pritesh-badge/">SOBRE NOSOTROS</a></li>
+    <li><a ui-sref="inicio">INICIO</a></li>
     <li><a href="#">SUCURSALES</a>    </li>
     <li><a ui-sref="menu.login">ZONA LOGIN</a></li>
     <li><a href="http://www.jochaho.com/wordpress/about-pritesh-badge/">CONTACTENOS</a></li>
-
   </ul>
+  </nav>
 <h1>BIENVENIDOS A Pizzerías Argenta SRL</h1>
-</nav>
+
 </div>
 

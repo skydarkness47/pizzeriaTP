@@ -12,7 +12,7 @@ else
 	console.info("No Token",$auth.getPayload());
 
 $scope.RegistroClientes =function(){
-	$state.go("menu.ABM");
+	$state.go("menu.Registro");
 }
 
 $scope.IniciarSeccion = function(){
@@ -37,7 +37,7 @@ factoryLoginABM.TraerObjeto(JSON.stringify($scope.usuario))
  		 	console.info(respuesta);
 			$auth.login(respuesta)
   				.then(function(response) {
-  				console.info($auth.isAuthenticated());
+  				
  			 		if($auth.isAuthenticated()){
 				  			$state.go("inicio");
 							console.info("Token Validado", $auth.getPayload());

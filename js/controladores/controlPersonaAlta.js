@@ -28,6 +28,11 @@ miApp.controller("controlPersonaAlta",function($scope,$state,FileUploader,$http,
 			        };
 
 
+	$scope.Deslogueo = function(){
+
+				$auth.logout();
+				$state.go("login.menu");
+			}
 
 
 				  $scope.Guardar=function(){

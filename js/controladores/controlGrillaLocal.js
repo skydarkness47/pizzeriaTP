@@ -3,7 +3,7 @@ miApp.controller('grillaLocal', function($scope, i18nService, uiGridConstants,$a
     console.info(factoryLocal);
 
 
-
+ $scope.user = $auth.getPayload();
 
 $scope.BorrarLocal = function(row){
 
@@ -16,7 +16,13 @@ factoryLocal.BorrarLocal(JSON.stringify(row.id_local))
 
 }
 
-        $scope.usuario = $auth.getPayload();
+  $scope.Deslogueo = function(){
+
+        $auth.logout();
+        $state.go("login.menu");
+      }
+      
+       
         // Objeto de configuracion de la grilla.
         $scope.gridOptions = {};
         $scope.gridOptions.enableCellEditOnFocus = true;
@@ -25,7 +31,7 @@ factoryLocal.BorrarLocal(JSON.stringify(row.id_local))
             $scope.gridOptions.enableFiltering = true;
         // Configuracion de la paginacion
         $scope.gridOptions.paginationPageSize = 25;
-         $scope.gridOptions.columnDefs = columDefs();
+     //    $scope.gridOptions.columnDefs = columDefs();
   //  $scope.gridOptions.enableFiltering = true;
     // Configuracion del idioma.
     i18nService.setCurrentLang('es');
@@ -37,6 +43,7 @@ factoryLocal.BorrarLocal(JSON.stringify(row.id_local))
              
                 });
 
+if($scope.user.rol === "ADMINISTRADOR"){
 
 function columDefs () {
   return [
@@ -49,12 +56,31 @@ function columDefs () {
         {field: 'longitud_local', name: 'longitud'},
         
         { width: 100, cellTemplate:"<button ng-Click='grid.appScope.ModificarLocal(row.entity)'>MODIFICAR", name:"MostrarLongitud"
-        },{ width: 100, cellTemplate:"<button ng-Click='grid.appScope.BorrarLocal(row.entity)'>BORRAR", name:"MostrarLongitud"
+        },
+        { width: 100, cellTemplate:"<button ng-Click='grid.appScope.BorrarLocal(row.entity)'>BORRAR", name:"MostrarLongitud"
         }
 
 
         ];
     }
+  }
 
-  
-  })
+   if($scope.user.rol != "ADMINISTRADOR"){
+alert("estoy en cliente");
+function columDefs () {
+  return [
+          { field: 'id_local', name: 'id'},
+
+        { field: 'nombre_local', name: 'nombre'},
+        {field: 'direccion_local', name: 'direccion'},
+
+        {field: 'latitud_local', name: 'latitud'},
+        {field: 'longitud_local', name: 'longitud'},
+        
+      
+
+        ];
+    }
+
+  }
+})

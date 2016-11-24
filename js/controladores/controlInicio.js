@@ -5,6 +5,11 @@ $scope.user = $auth.getPayload();
 console.info($scope.user);
 
 
+	$scope.Desloguear = function(){
+
+				$auth.logout();
+				$state.go("login.menu");
+			}
 
 
 

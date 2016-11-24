@@ -3,6 +3,11 @@ miApp.controller('controlGrillas', function($scope, Grilla, i18nService, uiGridC
     console.info(Grilla);
 
 
+  $scope.Deslogueo = function(){
+
+        $auth.logout();
+        $state.go("login.menu");
+      }
 
 
 

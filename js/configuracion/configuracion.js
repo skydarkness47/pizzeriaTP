@@ -91,6 +91,15 @@ $stateProvider
 					controller:"grillaLocal"
 						}
 				}
+			}).state(
+			"menu.Registro",{
+				url:"/Registro",
+				views: {
+					"contenido":{
+					templateUrl:"vistas/Registro.html",
+					controller:"controlABM"
+						}
+				}
 			})
 
 

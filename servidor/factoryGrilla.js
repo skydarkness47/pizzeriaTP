@@ -9,13 +9,13 @@ var objeto = {};
 
    function TraerTodos()
    {
-    console.log("hola");
+   
       return  Grilla.TraerTodos();
    }
 
    function borrar(obj)
    {
-    console.log("hola");
+   
       return  Grilla.borrar(obj);
    }
 

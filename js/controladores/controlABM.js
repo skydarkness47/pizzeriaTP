@@ -14,6 +14,7 @@ miApp.controller("controlABM",function($scope,$auth,$state,FileUploader,factoryL
 	
   $scope.Guardar=function(){
     console.info($scope.tipologin);
+    
   		if($scope.tipologin === "CLIENTE")
   	{
   		$scope.usuario.id_rol=3;			
@@ -54,7 +55,7 @@ $scope.user = $auth.getPayload();
 
 console.info($scope.user);
 
-	$scope.Desloguear = function(){
+	$scope.Deslogueo = function(){
 
 				$auth.logout();
 				$state.go("login.menu");
