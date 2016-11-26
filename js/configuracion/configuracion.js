@@ -100,6 +100,24 @@ $stateProvider
 					controller:"controlABM"
 						}
 				}
+			}).state(
+			"menu.AltaProducto",{
+				url:"/AltaProducto",
+				views: {
+					"contenido":{
+					templateUrl:"vistas/AltaProducto.html",
+					controller:"productoCtrl"
+						}
+				}
+			}).state(
+			"menu.AltaPromocion",{
+				url:"/AltaPromocion",
+				views: {
+					"contenido":{
+					templateUrl:"vistas/AltaPromocion.html",
+					controller:"promocionCtrl"
+						}
+				}
 			})
 
 

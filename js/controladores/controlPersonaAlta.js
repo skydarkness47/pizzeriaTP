@@ -26,13 +26,12 @@ miApp.controller("controlPersonaAlta",function($scope,$state,FileUploader,$http,
 				  });
 						console.info("Ya guardé el archivo.", item, response, status, headers);
 			        };
-
-
-	$scope.Deslogueo = function(){
+$scope.Desloguear = function(){
 
 				$auth.logout();
-				$state.go("login.menu");
+				$state.go("inicio");
 			}
+
 
 
 				  $scope.Guardar=function(){
@@ -53,10 +52,7 @@ miApp.controller("controlPersonaAlta",function($scope,$state,FileUploader,$http,
 					
 
 
-				$scope.Desloguear = function(){
-
-					$auth.logout();
-				}
+			
 
 				$scope.IraAlta = function(){
 				$state.go("persona.Alta");

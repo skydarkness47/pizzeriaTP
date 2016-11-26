@@ -9,8 +9,13 @@ miApp.controller("controlABM",function($scope,$auth,$state,FileUploader,factoryL
   	$scope.persona.apellido= "natalia" ;
   	$scope.persona.foto="pordefecto.png";
   	*///$scope.persona.foto="http://localhost:8080/Laboratorio-IV-2016/Clase.07/ws1/fotos/pordefecto.png";
+$scope.Desloguear = function(){
 
-  
+        $auth.logout();
+        $state.go("inicio");
+      }
+
+      
 	
   $scope.Guardar=function(){
     console.info($scope.tipologin);
@@ -55,10 +60,5 @@ $scope.user = $auth.getPayload();
 
 console.info($scope.user);
 
-	$scope.Deslogueo = function(){
-
-				$auth.logout();
-				$state.go("login.menu");
-			}
 
 })

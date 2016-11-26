@@ -3,6 +3,101 @@ input.ng-invalid {
     background-color: red;
 }
 
+    map, div[map] {display:block; width:400px; height:200px;}
+
+
+select {
+  display: inline-block;
+  color:black;
+  height: 2em;
+  width: 30%;
+  left: 10px;
+   border: solid;
+  }
+
+
+.container
+{
+
+  margin: 0 auto;
+  vertical-align: center;
+}
+body{
+   background-image: url("../imagenes/i_background.jpg");
+}
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+
+.dropdownmenu ul, .dropdownmenu li {
+  margin: 0;
+  padding: 0;
+}
+.dropdownmenu ul {
+  background: red;
+  list-style: none;
+  width: 100%;
+}
+.dropdownmenu li {
+  float: left;
+  position: relative;
+  width:auto;
+}
+.dropdownmenu a {
+  background: #FA5858;
+  color: #FFFFFF;
+  display: block;
+  font: bold 12px/20px sans-serif;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  -webkit-transition: all .25s ease;
+  -moz-transition: all .25s ease;
+  -ms-transition: all .25s ease;
+  -o-transition: all .25s ease;
+  transition: all .25s ease;
+}
+.dropdownmenu li:hover a {
+  background: #000000;
+}
+#submenu {
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  top: 35px;
+  visibility: hidden;
+  z-index: 1;
+}
+li:hover ul#submenu {
+  opacity: 1;
+  top: 40px;  /* adjust this as per top nav padding top & bottom comes */
+  visibility: visible;
+}
+#submenu li {
+  float: none;
+  width: 100%;
+}
+#submenu a:hover {
+  background: #DF4B05;
+}
+#submenu a {
+  background-color:#000000;
+}
+input.ng-invalid {
+    background-color: red;
+}
+
 
 select {
   display: inline-block;

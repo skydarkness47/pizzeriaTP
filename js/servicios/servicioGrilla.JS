@@ -40,11 +40,20 @@ this.TraerTodosLosLocales =TraerTodosLosLocales;
 
     this.borrarUsuario = borrarUsuario;
    function borrarUsuario(id){
-    console.info(id);
     return $http.delete(Url + "usuarios/borrar/" + id) 
     .then(function(respuesta) {
+      console.info(respuesta);
       return TraerTodosLosLocales();
     });
    };
 
-  })
+   this.ModificarUsuario = ModificarUsuario;
+   function ModificarUsuario(obj){
+    return $http.get(Url + "usuarios/modificar/" + obj) 
+    .then(function(respuesta) {
+      console.info(respuesta);
+      return TraerTodosLosLocales();
+    });
+   };
+
+})

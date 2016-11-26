@@ -11,7 +11,7 @@ console.info($scope.user);
 	$scope.Desloguear = function(){
 
 				$auth.logout();
-				$state.go("login.menu");
+				$state.go("inicio");
 			}
 
 

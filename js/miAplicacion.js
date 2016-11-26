@@ -5,6 +5,7 @@ var miApp = angular.module(
 	"angularFileUpload",
 	'satellizer',
     'ui.grid',
+    'ngMap',
     'ui.grid.pagination',
     'ui.grid.resizeColumns',
     'ui.grid.selection',

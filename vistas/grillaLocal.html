@@ -9,7 +9,7 @@
         <li><a >CONTACTENOS</a></li>
         <li><a ui-sref="menu.ABM">ALTA USUARIOS</a></li>
         <li><a ui-sref="menu.AltaLocal">ALTA LOCAL</a></li>
-        <li><a ui-sref="Deslogueo()" >DESLOGUEARSE</a></li>
+        <li><a ng-Click="Deslogueo()" >DESLOGUEARSE</a></li>
         <li><a ui-sref="menu.Grillas" >GRILLA USUARIOS</a></li>
         <li><a ui-sref="menu.GrillaLocal" >GRILLA LOCALES</a></li>
     </ul>
@@ -23,7 +23,7 @@
       <li><a ui-sref="menu.GrillaLocal">LOCALES</a></li>
       <li><a href="#">OFERTAS</a></li>
       <li><a >RESERVAS</a></li>
-       <li><a ui-sref="Deslogueo()">DESLOGUEO</a></li>
+       <li><a ng-Click="Deslogueo()">DESLOGUEO</a></li>
       </ul>
   </nav>
 </div>
@@ -33,13 +33,17 @@
 <br>
 <br>
 
-
-       
-     
-
     <div ui-grid="gridOptions" class="myGrid" ui-grid-pagination ui-grid-resize-columns></div>
-  
+
  
-       
+         <div zoom="2"
+         ng-if="map=='hola'">
+    <ng-map center="[{{lat}}, {{log}}]" >
+    <marker   position ="[{{lat}}, {{log}}]"  animation="Animation.DROP" ></marker>
+    </ng-map>
+  </div>
+
+   
+  </div>
      
 

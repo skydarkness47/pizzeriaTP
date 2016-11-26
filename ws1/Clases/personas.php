@@ -109,20 +109,34 @@ class Usuario
 		
 	}
 	
-	public static function ModificarPersona($persona)
+	public static function ModificarUsuario($usuario)
 	{
+		var_dump($usuario);
+		if($usuario->descripcion_rol == "ADMINISTRADOR")
+		{
+			$usuario->id_rol = 1;
+		}else if($usuario->descripcion_rol == "CLIENTE")
+		{
+			$usuario->id_rol = 3;
+		}if($usuario->descripcion_rol == "ENCARGADO")
+		{
+			$usuario->id_rol = 4;
+		}if($usuario->descripcion_rol == "EMPLEADO")
+		{
+			$usuario->id_rol = 2;
+		}
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 			$consulta =$objetoAccesoDato->RetornarConsulta("
-				update persona 
-				set nombre=:nombre,
-				apellido=:apellido,
-				foto=:foto
-				WHERE id=:id");
+				update usuario 
+				set nombre_usuario=:nombre_usuario,
+				pass_usuario=:pass_usuario,
+				id_rol=:id_rol
+				WHERE id_usuario=:id");
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
-			$consulta->bindValue(':id',$persona->id, PDO::PARAM_INT);
-			$consulta->bindValue(':nombre',$persona->nombre, PDO::PARAM_STR);
-			$consulta->bindValue(':apellido', $persona->apellido, PDO::PARAM_STR);
-			$consulta->bindValue(':foto', $persona->foto, PDO::PARAM_STR);
+			$consulta->bindValue(':id',$usuario->id_usuario, PDO::PARAM_INT);
+			$consulta->bindValue(':nombre_usuario',$usuario->nombre_usuario, PDO::PARAM_STR);
+			$consulta->bindValue(':pass_usuario', $usuario->pass_usuario, PDO::PARAM_STR);
+			$consulta->bindValue(':id_rol', $usuario->id_rol, PDO::PARAM_INT);
 			return $consulta->execute();
 	}
 

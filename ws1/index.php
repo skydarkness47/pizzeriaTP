@@ -2,6 +2,7 @@
 require_once('Clases/AccesoDatos.php');
 require_once('Clases/personas.php');
 require_once('Clases/local.php');
+require_once('Clases/pizza.php');
 
 require 'vendor/autoload.php';
 
@@ -34,7 +35,6 @@ $app->get('/usuarios/validar/{objeto}', function ($request, $response, $args) {
         if($adm->nombre_usuario == $usuario->nombre_usuario)
             if($adm->pass_usuario == $usuario->pass_usuario)
                  $validador=true;
-
    
    }
    echo  $validador;
@@ -70,14 +70,26 @@ $app->get('/usuarios/traer/{objeto}', function ($request, $response, $args) {
 
 $app->delete('/usuarios/borrar/{objeto}', function ($request, $response, $args) {
         
-        $usuario=json_encode($args['objeto']);  
+        $usuario=json_decode($args['objeto']);  
         
          $usuario = preg_replace('([^A-Za-z0-9])', '', $usuario);
 
 
-          return Usuaurio::BorrarUsuario($usuario); 
+          return Usuario::BorrarUsuario($usuario); 
     
 });
+
+$app->get('/usuarios/modificar/{objeto}', function ($request, $response, $args) {
+        
+        $usuario=json_decode($args['objeto']);  
+        
+        
+
+
+          return Usuario::ModificarUsuario($usuario); 
+    
+});
+
 
 $app->post('/archivos', function ($request, $response, $args) {
     
@@ -107,7 +119,7 @@ $app->get('/locales', function ($request, $response, $args) {
 });
 
 /* POST: Para crear recursos */
-$app->post('/local/alta/{objeto}', function ($request, $response, $args) {
+$app->get('/local/alta/{objeto}', function ($request, $response, $args) {
 
 $local=json_decode($args['objeto']);
     $local->foto_local=explode(';',$local->foto_local);
@@ -145,6 +157,34 @@ $app->post('/usuarios/alta/{objeto}', function ($request, $response, $args) {
     
 });
 
+$app->get('/producto', function ($request, $response, $args) {
 
+
+          return json_encode(Pizza::TraerTodasLasPizzas()); 
+    
+});
+
+
+
+$app->post('/producto/alta/{objeto}', function ($request, $response, $args) {
+
+$pizza=json_decode($args['objeto']);
+    $pizza->foto_pizza=explode(';',$pizza->foto_pizza);
+    $arrayFoto = array();
+    if(count($pizza->foto_pizza) > 0){
+        for ($i = 0; $i < count($pizza->foto_pizza); $i++ ){
+            $rutaVieja="fotos/".$pizza->foto_pizza[$i];
+            $rutaNueva=$pizza->descripcion_pizza. "_". $i .".".PATHINFO($rutaVieja, PATHINFO_EXTENSION);
+            copy($rutaVieja, "fotos/".$rutaNueva);
+            unlink($rutaVieja);
+            $arrayFoto[]="http://localhost:8080/pizzeriaTP/ws1/fotos/".$rutaNueva;
+        } 
+
+        $pizza->foto_pizza=json_encode($arrayFoto); 
+
+    }
+          return $response->write(Pizza::InsertarPizza($pizza)); 
+    
+});
 
 $app->run();

@@ -1,4 +1,4 @@
-miApp.controller('grillaLocal', function($scope, i18nService, uiGridConstants,$auth,factoryLocal) {
+miApp.controller('grillaLocal', function($scope, $state,i18nService,NgMap, uiGridConstants,$auth,factoryLocal) {
     $scope.titulo = "Configuracion Campos";
     console.info(factoryLocal);
 
@@ -19,10 +19,10 @@ factoryLocal.BorrarLocal(JSON.stringify(row.id_local))
   $scope.Deslogueo = function(){
 
         $auth.logout();
-        $state.go("login.menu");
+        $state.go("inicio");
       }
       
-       
+       console.info($scope.user.rol);
         // Objeto de configuracion de la grilla.
         $scope.gridOptions = {};
         $scope.gridOptions.enableCellEditOnFocus = true;
@@ -32,7 +32,11 @@ factoryLocal.BorrarLocal(JSON.stringify(row.id_local))
         // Configuracion de la paginacion
        $scope.gridOptions.paginationPageSize = 25;
     
-    //   $scope.gridOptions.columnDefs = columDefs();
+    if($scope.user.rol === "ADMINISTRADOR"){
+       $scope.gridOptions.columnDefs = columADM();
+     }else {
+       $scope.gridOptions.columnDefs = columCMP();
+     }
    $scope.gridOptions.enableFiltering = true;
     // Configuracion del idioma.
     i18nService.setCurrentLang('es');
@@ -44,12 +48,18 @@ factoryLocal.BorrarLocal(JSON.stringify(row.id_local))
              
                 });
 
-console.info($scope.user.rol);
+ $scope.Mapa= function(row){
+  
+      $scope.lat=40.00000;
+      $scope.lon=-10.000000;
+      $scope.map = "hola";
+     NgMap.getMap().then(function (map) {
+          console.log(map.getBounds().toString());
+      });
 
+    }
 
-if($scope.user.rol === 'ADMINISTRADOR'){
-
-function columDefs () {
+function columADM () {
   return [
           { field: 'id_local', name: 'id'},
 
@@ -59,18 +69,16 @@ function columDefs () {
         {field: 'latitud_local', name: 'latitud'},
         {field: 'longitud_local', name: 'longitud'},
         
-        { width: 100, cellTemplate:"<button ng-Click='grid.appScope.ModificarLocal(row.entity)'>MODIFICAR", name:"MostrarLongitud"
+        { width: 100, cellTemplate:"<button ng-Click='grid.appScope.ModificarLocal(row.entity)'>MODIFICAR", name:"MODIFICAR"
         },
-        { width: 100, cellTemplate:"<button ng-Click='grid.appScope.BorrarLocal(row.entity)'>BORRAR", name:"MostrarLongitud"
+        { width: 100, cellTemplate:"<button ng-Click='grid.appScope.BorrarLocal(row.entity)'>BORRAR", name:"BORRAR"
         }
 
 
         ];
-    }
+    
   }
-
-   if($scope.user.rol != "ADMINISTRADOR"){
-function columDefs () {
+function columCMP () {
   return [
           { field: 'id_local', name: 'id'},
 
@@ -79,11 +87,12 @@ function columDefs () {
 
         {field: 'latitud_local', name: 'latitud'},
         {field: 'longitud_local', name: 'longitud'},
-        
+        { width: 100, cellTemplate:"<button ng-Click='grid.appScope.Mapa(row.entity)'>MOSTRAR MAPA", name:"MAPA"
+        }
       
 
         ];
     }
 
-  }
+  
 })

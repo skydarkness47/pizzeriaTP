@@ -26,8 +26,9 @@ factoryLocal.InsertarLocal(JSON.stringify($scope.local)) //+ JSON.stringify($sco
 	$scope.Deslogueo = function(){
 
 				$auth.logout();
-				$state.go("login.menu");
+				$state.go("inicio");
 			}
+
 
 
   $scope.Guardar=function(){

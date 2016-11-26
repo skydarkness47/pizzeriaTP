@@ -42,7 +42,7 @@ console.log(objeto);
    
   this.InsertarLocal = InsertarLocal;
   function InsertarLocal(objeto){
-    return $http.post(Url + "local/alta/"+ objeto)
+    return $http.get(Url + "local/alta/"+ objeto)
       .then(function(respuesta) {
       console.info(respuesta); 
        return respuesta.data
@@ -52,5 +52,30 @@ console.log(objeto);
 
   }//FIN IF QUE TRAER CLIENTES
 
+
+ this.InsertarProducto = InsertarProducto;
+  function InsertarProducto(objeto){
+    return $http.post(Url + "producto/alta/"+ objeto)
+      .then(function(respuesta) {
+      console.info(respuesta); 
+       return respuesta.data
+
+    })      // FIN DEL RETURN
+
+
+  }//FIN IF QUE TRAER CLIENTES
+
+   this.TraerTodosProductos = TraerTodosProductos;
+  function TraerTodosProductos(){
+    return $http.get(Url + "producto")
+      .then(function(respuesta) {
+       return respuesta.data
+
+    })      // FIN DEL RETURN
+
+
+  }//FIN IF QUE TRAER CLIENTES
+
+  
 
   })

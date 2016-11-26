@@ -8,7 +8,7 @@
     <li><a >CONTACTENOS</a></li>
      <li><a ui-sref="menu.ABM">ALTA USUARIOS</a></li>
      <li><a ui-sref="menu.AltaLocal">ALTA LOCAL</a></li>
-     <li><a ui-sref="Deslogueo()" >DESLOGUEARSE</a></li>
+     <li><a ng-Click="Deslogueo()" >DESLOGUEARSE</a></li>
      <li><a ui-sref="menu.Grillas" >GRILLA USUARIOS</a></li>
      <li><a ui-sref="menu.GrillaLocal" >GRILLA LOCALES</a></li>
 
@@ -30,6 +30,9 @@
  <div ui-grid="gridOptions" class="myGrid"
     ui-grid-pagination
     ui-grid-resize-columns
+    ui-grid-cellNav 
+    ui-grid-edit 
+    ui-grid-row-edit
   >
 </div>
   <ul>

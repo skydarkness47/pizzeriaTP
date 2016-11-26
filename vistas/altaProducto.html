@@ -5,15 +5,13 @@
 
 <nav class="dropdownmenu">
   <ul>
-    <li><a ui-sref="menu.inicio">INICIO</a></li>
+    <li><a ui-sref="inicio">INICIO</a></li>
     <li><a >SOBRE NOSOTROS</a></li>
-    <li><a href="#">SUCURSALES</a>    </li>
-    <li><a >CONTACTENOS</a></li>
-     <li><a ui-sref="menu.ABM">ALTA USUARIOS</a></li>
-     <li><a ui-sref="menu.AltaLocal">ALTA LOCAL</a></li>
-     <li><a ng-Click="Deslogueo()" >DESLOGUEARSE</a></li>
-     <li><a ui-sref="menu.Grillas" >GRILLA USUARIOS</a></li>
-     <li><a ui-sref="menu.GrillaLocal" >GRILLA LOCALES</a></li>
+    <li><a ui-sref="menu.registro">ALTAS CLIENTES</a></li>
+    <li><a ui-sref="menu.AltaProducto">ALTA PRODUCTOS</a></li>
+    <li><a ui-sref="menu.AltaPromocion">ALTA PROMOCION</a></li>
+    <li><a ui-sref="menu.AltaProducto">ALTA PEDIDOS</a></li>
+    <li><a ng-Click="Deslogueo()">DESLOGUEARSE</a></li>
 
   </ul>
 </nav>
@@ -22,15 +20,12 @@
 <br>
 <br>
 <br>
-      <link rel="stylesheet" href="css/style_login.css">
-    <link rel="stylesheet" href="css/style.css">
-
-         <body class="collage none-bg">
+ <body class="collage none-bg">
    </head>
 
       <div id="header">
             <h1 class="name-title">
-            ALTA LOCALES
+            ALTA PRODUCTO
           </h1>
          </div>
 </body>
@@ -43,18 +38,13 @@
     <div id="header">
           
          </div>
-          <input type="text" value="" placeholder="ingrese el nombre del local" ng-model="local.nombre_local" required />
+          <input type="text" value="" placeholder="ingrese descripcion del producto" ng-model="producto.descripcion_pizza" required />
         </p>
          <p>
-         <input type="text" value="" placeholder="ingrese la direccion del local" ng-model="local.direccion_local" required />
+         <input type="text" value="" placeholder="ingrese precio del producto" ng-model="producto.precio_pizza" required />
         </p>
          <p>
-          <input type="text" value="" placeholder="ingrese la latitud del local" ng-model="local.latitud_local" required />
-        </p>
-         <p>
-             <input type="text" value="" placeholder="ingrese la longitud del local" ng-model="local.longitud_local" required />
-        </p>
-         <p>
+        
                    <input type="file" nv-file-select="" uploader="SubirdorArchivos" multiple  /><br/>
 
     <li ng-repeat="item in SubirdorArchivos.queue">

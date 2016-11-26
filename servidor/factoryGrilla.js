@@ -6,6 +6,7 @@ var objeto = {};
   objeto.borrarUsuario = borrarUsuario;
   objeto.ModificarUsuario = ModificarUsuario;
   objeto.borrarUsuario = borrarUsuario;
+  objeto.ModificarUsuario = ModificarUsuario;
    return objeto;
 
    function TraerTodos()
@@ -25,6 +26,12 @@ var objeto = {};
  
       return  Grilla.borrarUsuario(obj);
    }
+   function ModificarUsuario(obj)
+   {
+ 
+      return  Grilla.ModificarUsuario(obj);
+   }
+
 
    function TraerTodosUsuarios()
    {

@@ -1,4 +1,4 @@
-miApp.controller('controlGrillas', function($scope, Grilla, i18nService, uiGridConstants,$auth,factoryGrilla) {
+miApp.controller('controlGrillas', function($scope, $state,Grilla, i18nService, uiGridConstants,$auth,factoryGrilla) {
     $scope.titulo = "Configuracion Campos";
     
 
@@ -6,9 +6,9 @@ miApp.controller('controlGrillas', function($scope, Grilla, i18nService, uiGridC
   $scope.Deslogueo = function(){
 
         $auth.logout();
-        $state.go("login.menu");
+        $state.go("inicio");
       }
-
+      
 
 $scope.usuario = $auth.getPayload();
 
@@ -18,14 +18,33 @@ $scope.usuario = $auth.getPayload();
                   $scope.gridOptions.data= respuesta;
              
                 });
+
 $scope.borrarUsuario= function(obj){
    factoryGrilla.borrarUsuario(obj.id_usuario)
                 .then(function(respuesta) {
-                  $scope.gridOptions.data= respuesta;
+                  
+                    factoryGrilla.TraerTodos()
+                        .then(function(respuesta) {
+                            $scope.gridOptions.data= respuesta;
+                 
+                         });
              
                 });              
       }
+$scope.ModificarUsuario= function(obj){
+  JSON.stringify(obj);
+  console.info(obj);
+   factoryGrilla.ModificarUsuario(obj)
+                .then(function(respuesta) {
 
+                    factoryGrilla.TraerTodos()
+                        .then(function(respuesta) {
+                            $scope.gridOptions.data= respuesta;
+                 
+                         });
+             
+                });              
+      }
 
 if($scope.usuario.rol === "ADMINISTRADOR")
 {
@@ -36,7 +55,7 @@ if($scope.usuario.rol === "ADMINISTRADOR")
             { field: 'nombre_usuario', name: 'nombre'},
             {field: 'descripcion_rol', name: 'rol'},
             { width: 100, cellTemplate:"<button ng-Click='grid.appScope.borrarUsuario(row.entity)'>Borrar", name:"MostrarAmigos"},
-            { width: 100, cellTemplate:"<button ng-Click='grid.appScope.Modificar(row.entity)'>Modificar", name:"GpsAmigos"  }
+            { width: 100, cellTemplate:"<button ng-Click='grid.appScope.ModificarUsuario(row.entity)'>Modificar", name:"GpsAmigos"  }
 
            
             ];

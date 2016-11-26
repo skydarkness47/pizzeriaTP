@@ -34,13 +34,13 @@ class Local
     public static function InsertarLocal($Local)
 	{
 		var_dump($Local);
-		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+				$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		$consulta =$objetoAccesoDato->RetornarConsulta("insert into local ( nombre_local, direccion_local, latitud_local, longitud_local, foto_local) 
 		VALUES (:nombre_local,:direccion_local,:latitud_local,:longitud_local,:foto_local)");
 		$consulta->bindValue(':nombre_local',$Local->nombre_local, PDO::PARAM_STR);
-		$consulta->bindValue(':direccion_local', $Local->direccion_local, PDO::PARAM_STR);
-		$consulta->bindValue(':latitud_local', 0, PDO::PARAM_INT);
-		$consulta->bindValue(':longitud_local', 0, PDO::PARAM_INT);
+		$consulta->bindValue(':direccion_local',$Local->direccion_local, PDO::PARAM_STR);
+		$consulta->bindValue(':latitud_local',0, PDO::PARAM_STR);
+		$consulta->bindValue(':longitud_local',0, PDO::PARAM_STR);
 		$consulta->bindValue(':foto_local', $Local->foto_local, PDO::PARAM_STR);
 		$consulta->execute();		
 		return $objetoAccesoDato->RetornarUltimoIdInsertado();		
