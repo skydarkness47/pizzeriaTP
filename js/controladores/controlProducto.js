@@ -13,7 +13,7 @@ $scope.user = $auth.getPayload();
   	$scope.persona.apellido= "natalia" ;
   	$scope.persona.foto="pordefecto.png";
   	*///$scope.persona.foto="http://localhost:8080/Laboratorio-IV-2016/Clase.07/ws1/fotos/pordefecto.png";
-$scope.Desloguear = function(){
+$scope.Deslogueo = function(){
 
         $auth.logout();
         $state.go("inicio");

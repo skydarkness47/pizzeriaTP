@@ -2,19 +2,35 @@
   <link rel="stylesheet" href="css/style.css">
       <link rel="stylesheet" href="css/style_login.css">
 
-
+<div ng-if="user.rol == 'EMPLEADO'" >
 <nav class="dropdownmenu">
   <ul>
     <li><a ui-sref="inicio">INICIO</a></li>
-    <li><a >SOBRE NOSOTROS</a></li>
-    <li><a ui-sref="menu.registro">ALTAS CLIENTES</a></li>
+    <li><a ui-sref="menu.Registro">ALTAS CLIENTES</a></li>
     <li><a ui-sref="menu.AltaProducto">ALTA PRODUCTOS</a></li>
     <li><a ui-sref="menu.AltaPromocion">ALTA PROMOCION</a></li>
     <li><a ui-sref="menu.AltaProducto">ALTA PEDIDOS</a></li>
+        <li><a ui-sref="menu.grillaPedidos" >GRILLA PEDIDOS</a></li>
+
     <li><a ng-Click="Deslogueo()">DESLOGUEARSE</a></li>
 
   </ul>
 </nav>
+</div>
+
+
+
+<div ng-if="user.rol == 'ENCARGADO'" >
+<nav class="dropdownmenu">
+  <ul>
+    <li><a ui-sref="inicio">INICIO</a></li>
+    <li><a ui-sref="menu.Registro">ALTAS CLIENTES Y EMPLEADOS</a></li>
+    <li><a ui-sref="menu.AltaProducto">ALTA PRODUCTOS</a></li>
+    <li><a ui-sref="menu.AltaPromocion">ALTA PROMOCION</a></li>
+    <li><a ui-sref="menu.altaPedidos">ALTA PEDIDOS</a></li>
+        <li><a ui-sref="menu.Grillas">GRILLA CLIENTES EMPLEADOS</a></li>
+    <li><a ng-Click="Deslogueo()">DESLOGUEARSE</a></li>
+
 </div>
 
 <br>
@@ -42,16 +58,14 @@
 <select ng-model="objeSeleccionadoPizza" ng-options="pizza as pizza.descripcion_pizza for pizza in listapizzas track by pizza.id_pizza">
         <option value="">* Elige Una Pizza *</option>
       </select>
-      <select ng-model="objeSeleccionadoLocal" ng-options="pizza as pizza.nombre_local for pizza in itemsSelectLocal track by pizza.id_local">
+      </p>
+       <p>
+      <select ng-model="objeSeleccionadoLocal" ng-options="pizza as pizza.nombre_local for pizza in listalocales track by pizza.id_local">
         <option value="">* Elige Un Local *</option>
       </select>
-
         </p>
          <p>
-          <input type="text" value="" placeholder="ingrese descripcion del producto" ng-model="promocion.descripcion_pizza" required />
-        </p>
-         <p>
-         <input type="text" value="" placeholder="ingrese precio del producto" ng-model="promocion.precio_pizza" required />
+         <input type="text" value="" placeholder="ingrese precio de la promocion" ng-model="promocion.precio_promo" required />
         </p>
          <p>
        <button  name="guardar" ng-disabled="FormIngreso.$invalid"  ng-click="Guardar()" ></span>Guardar</a> 

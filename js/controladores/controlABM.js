@@ -9,7 +9,13 @@ miApp.controller("controlABM",function($scope,$auth,$state,FileUploader,factoryL
   	$scope.persona.apellido= "natalia" ;
   	$scope.persona.foto="pordefecto.png";
   	*///$scope.persona.foto="http://localhost:8080/Laboratorio-IV-2016/Clase.07/ws1/fotos/pordefecto.png";
+    if($auth.isAuthenticated())
+$scope.user = $auth.getPayload();
+
+console.info($scope.user);
+
 $scope.Desloguear = function(){
+
 
         $auth.logout();
         $state.go("inicio");
@@ -31,7 +37,10 @@ $scope.Desloguear = function(){
      if($scope.tipologin === "ENGARCADO")
   	{
   		$scope.usuario.id_rol = 4;
-  	}
+  	}if($scope.user.rol === "EMPLEADO")
+    {
+      $scope.usuario.id_rol=3;   
+    }
 
   	
     if(!$auth.isAuthenticated())
@@ -47,6 +56,12 @@ $scope.Desloguear = function(){
             alert("SE DIO DE ALTA CORRECTAMENTE! SERA REDIRECCIONADO PARA EL LOGIN"); 
               $state.go("menu.login");
             }else{
+              if($scope.user.rol === "ENGARCADO")
+              {
+               alert("SE DIO DE ALTA CORRECTAMENTE!"); 
+                $state.go("menu.Grillas");
+
+              }
               alert("SE DIO DE ALTA CORRECTAMENTE!"); 
                 $state.go("menu.Grillas");
             }
@@ -55,10 +70,6 @@ $scope.Desloguear = function(){
 				
 	});
 }
-if($auth.isAuthenticated())
-$scope.user = $auth.getPayload();
-
-console.info($scope.user);
 
 
 })

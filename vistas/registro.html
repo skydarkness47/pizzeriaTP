@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/style_login.css">
+<div ng-if="user.rol == null">
 <nav class="dropdownmenu">
    <ul>
       <li><a ui-sref="inicio">INICIO</a></li>
@@ -8,6 +9,34 @@
    </ul>
 </nav>
 </div>
+<div ng-if="user.rol == 'EMPLEADO'">
+<nav class="dropdownmenu">
+  <ul>
+    <li><a ui-sref="inicio">INICIO</a></li>
+    <li><a ui-sref="menu.Registro">ALTAS CLIENTES</a></li>
+    <li><a ui-sref="menu.AltaProducto">ALTA PRODUCTOS</a></li>
+    <li><a ui-sref="menu.AltaPromocion">ALTA PROMOCION</a></li>
+    <li><a ui-sref="menu.altaPedidos">ALTA PEDIDOS</a></li>
+     <li><a ui-sref="menu.grillaPedidos" >GRILLA PEDIDOS</a></li>
+    <li><a ng-Click="Deslogueo()">DESLOGUEARSE</a></li>
+
+  </ul>
+</nav>
+</div>
+
+<div ng-if="user.rol == 'ENCARGADO'">
+<nav class="dropdownmenu">
+ <ul>
+    <li><a ui-sref="inicio">INICIO</a></li>
+    <li><a ui-sref="menu.Registro">ALTAS CLIENTES Y EMPLEADOS</a></li>
+    <li><a ui-sref="menu.AltaProducto">ALTA PRODUCTOS</a></li>
+    <li><a ui-sref="menu.AltaPromocion">ALTA PROMOCION</a></li>
+        <li><a ui-sref="menu.Grillas">GRILLA CLIENTES EMPLEADOS</a></li>
+     <li><a ng-Click="Deslogueo()">DESLOGUEARSE</a></li>
+    </ul>
+</nav>
+</div>
+
 <br>
 <br>
 <br>
@@ -17,7 +46,7 @@
    </head>
    <div id="header">
       <h1 class="name-title">
-         ABM
+         REGISTRO CLIENTE
       </h1>
    </div>
 </body>
@@ -33,6 +62,15 @@
    <br>
       <input type="text" value="" placeholder="ingrese la clave" ng-model="usuario.pass_usuario" required />
 <br>
+
+      <h1>seleccione tipo de alta</h1>
+   <select name="multipleSelect"  ng-model="tipologin" value="hola">
+<option value="">* Elige Una tipo *</option>
+      <option ng-model="cliente" >CLIENTE</option>
+      <option ng-model="emple">EMPLEADO</option>
+   </select>
+
+
  <button  name="guardar" ng-disabled="FormIngreso.$invalid"  ng-click="Guardar()" ></span>Guardar</a> 
   
 </div>

@@ -1,9 +1,10 @@
-miApp.service('factoryPromocion', function (ABM,factoryRutas) {
+miApp.service('factoryPromocion', function (Grilla,ABM,factoryRutas) {
 objeto = {};
    objeto.nombre = "factory de login y abm";
    objeto.TraerObjeto= TraerObjeto;
-   objeto.Insertar = Insertar;
+   objeto.InsertarPromocion = InsertarPromocion;
    objeto.ApiArchivos = ApiArchivos;
+   objeto.TraerTodasLasPromos=TraerTodasLasPromos;
    return objeto;
 
 
@@ -13,9 +14,9 @@ objeto = {};
      }
 
 
-  function Insertar(parametro)
+  function InsertarPromocion(parametro)
   {
-    return ABM.InsertarProducto(parametro);
+    return ABM.InsertarPromocion(parametro);
 
   }
   
@@ -23,8 +24,9 @@ objeto = {};
   function ApiArchivos(){
     return factoryRutas.ApiUrl + "archivos";
   }
-  function Guardar()
-  {
-    return ABM.Guardar;
+
+
+function TraerTodasLasPromos(){
+    return  Grilla.TraerTodasLasPromos();
   }
   })//cierro factory

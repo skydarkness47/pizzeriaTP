@@ -56,4 +56,44 @@ this.TraerTodosLosLocales =TraerTodosLosLocales;
     });
    };
 
+this.TraerTodasLasPromos = TraerTodasLasPromos;
+   function TraerTodasLasPromos(){
+    return $http.get(Url + "promociones") 
+    .then(function(respuesta) {
+      console.info(respuesta);
+      return respuesta.data;
+    });
+   };
+
+
+
+this.TraerTodosLosClientes = TraerTodosLosClientes;
+   function TraerTodosLosClientes(){
+    return $http.get(Url + "clientes") 
+    .then(function(respuesta) {
+      console.info(respuesta);
+      return respuesta.data;
+    });
+   };
+
+
+this.TraerTodosLosPedidos = TraerTodosLosPedidos;
+   function TraerTodosLosPedidos(){
+    return $http.get(Url + "pedidos") 
+    .then(function(respuesta) {
+      console.info(respuesta);
+      return respuesta.data;
+    });
+   };
+
+this.TraerClientesEmpleados = TraerClientesEmpleados;
+   function TraerClientesEmpleados(){
+    return $http.get(Url + "clientesEmpleados") 
+    .then(function(respuesta) {
+      console.info(respuesta);
+      return respuesta.data;
+    });
+   };
+
+
 })

@@ -76,6 +76,30 @@ console.log(objeto);
 
   }//FIN IF QUE TRAER CLIENTES
 
+  this.InsertarPromocion = InsertarPromocion;
+  function InsertarPromocion(obj){
+    return $http.post(Url + "promocion/" + obj)
+      .then(function(respuesta) {
+       return respuesta.data
+
+    })      // FIN DEL RETURN
+
+
+  }//FIN IF QUE TRAER CLIENTES
+
+   this.InsertarPedido = InsertarPedido;
+  function InsertarPedido(objeto){
+    console.info(objeto);
+    return $http.get(Url + "pedidos/alta/"+ objeto)
+      .then(function(respuesta) {
+      console.info(respuesta); 
+       return respuesta.data
+
+    })      // FIN DEL RETURN
+
+
+  }//FIN IF QUE TRAER CLIENTE
   
+
 
   })

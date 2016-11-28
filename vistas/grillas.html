@@ -1,11 +1,8 @@
   <link rel="stylesheet" href="css/style_grilla.css">
-
+<div ng-if="user.rol == 'ADMINISTRADOR'">
 <nav class="dropdownmenu">
   <ul>
     <li><a ui-sref="menu.inicio">INICIO</a></li>
-    <li><a >SOBRE NOSOTROS</a></li>
-    <li><a href="#">SUCURSALES</a>    </li>
-    <li><a >CONTACTENOS</a></li>
      <li><a ui-sref="menu.ABM">ALTA USUARIOS</a></li>
      <li><a ui-sref="menu.AltaLocal">ALTA LOCAL</a></li>
      <li><a ng-Click="Deslogueo()" >DESLOGUEARSE</a></li>
@@ -15,6 +12,34 @@
 
   </ul>
 </nav>
+</div>
+
+<div ng-if="user.rol == 'EMPLEADO'">
+<nav class="dropdownmenu">
+  <ul>
+     <li><a ui-sref="inicio">INICIO</a></li>
+    <li><a ui-sref="menu.Registro">ALTAS CLIENTES</a></li>
+    <li><a ui-sref="menu.AltaProducto">ALTA PRODUCTOS</a></li>
+    <li><a ui-sref="menu.AltaPromocion">ALTA PROMOCION</a></li>
+    <li><a ui-sref="menu.altaPedidos">ALTA PEDIDOS</a></li>
+    <li><a ng-Click="Deslogueo()">DESLOGUEARSE</a></li>
+
+  </ul>
+</nav>
+</div>
+
+
+<div ng-if="user.rol == 'ENCARGADO'" >
+<nav class="dropdownmenu">
+  <ul>
+    <li><a ui-sref="inicio">INICIO</a></li>
+    <li><a ui-sref="menu.Registro">ALTAS CLIENTES Y EMPLEADOS</a></li>
+    <li><a ui-sref="menu.AltaProducto">ALTA PRODUCTOS</a></li>
+    <li><a ui-sref="menu.AltaPromocion">ALTA PROMOCION</a></li>
+    <li><a ui-sref="menu.altaPedidos">ALTA PEDIDOS</a></li>
+    <li><a ui-sref="menu.Grillas">GRILLA CLIENTES EMPLEADOS</a></li>
+    <li><a ng-Click="Deslogueo()">DESLOGUEARSE</a></li>
+
 </div>
 
 <br>

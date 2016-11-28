@@ -95,7 +95,27 @@ class Usuario
 		$arrEmpleado= $consulta->fetchAll(PDO::FETCH_CLASS, "Usuario");	
 		return $arrEmpleado;
 	}
-	
+public static function TraerTodosLosClientes()
+	{
+		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+		//$consulta =$objetoAccesoDato->RetornarConsulta("select * from persona");
+	$consulta =$objetoAccesoDato->RetornarConsulta("SELECT * FROM usuario usu JOIN rol ro ON usu.id_rol=ro.id_rol WHERE usu.id_rol = 3");
+		$consulta->execute();			
+		$arrEmpleado= $consulta->fetchAll(PDO::FETCH_CLASS, "Usuario");	
+		return $arrEmpleado;
+	}	
+public static function TraerClientesEmpleados()
+	{
+		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+		//$consulta =$objetoAccesoDato->RetornarConsulta("select * from persona");
+	$consulta =$objetoAccesoDato->RetornarConsulta("SELECT * FROM usuario usu JOIN rol ro ON usu.id_rol=ro.id_rol WHERE (usu.id_rol = 3 XOR usu.id_rol = 2)");
+		$consulta->execute();			
+		$arrEmpleado= $consulta->fetchAll(PDO::FETCH_CLASS, "Usuario");	
+		return $arrEmpleado;
+	}	
+
+
+
 	public static function BorrarUsuario($idParametro)
 	{	
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 

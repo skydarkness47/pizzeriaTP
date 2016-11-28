@@ -3,6 +3,9 @@ require_once('Clases/AccesoDatos.php');
 require_once('Clases/personas.php');
 require_once('Clases/local.php');
 require_once('Clases/pizza.php');
+require_once('Clases/promocion.php');
+require_once('Clases/pedido.php');
+
 
 require 'vendor/autoload.php';
 
@@ -186,5 +189,49 @@ $pizza=json_decode($args['objeto']);
           return $response->write(Pizza::InsertarPizza($pizza)); 
     
 });
+
+
+$app->post('/promocion/{objeto}', function ($request, $response, $args) {
+
+$promocion=json_decode($args['objeto']);
+
+          return $response->write(Promocion::InsertarPromocion($promocion)); 
+    
+});
+
+$app->get('/promociones', function ($request, $response, $args) {
+
+          return json_encode(Promocion::TraerTodasLasPromociones()); 
+    
+});
+
+$app->get('/clientes', function ($request, $response, $args) {
+
+          return json_encode(Usuario::TraerTodosLosClientes()); 
+    
+});
+
+
+$app->get('/clientesEmpleados', function ($request, $response, $args) {
+
+          return json_encode(Usuario::TraerClientesEmpleados()); 
+    
+});
+$app->get('/pedidos/alta/{objeto}', function ($request, $response, $args) {
+
+$promocion=json_decode($args['objeto']);
+var_dump($promocion);
+
+          return $response->write(Pedido::InsertarPedido($promocion)); 
+    
+});
+
+$app->get('/pedidos', function ($request, $response, $args) {
+
+          return json_encode(Pedido::TraerTodosLosPedidos()); 
+    
+});
+
+
 
 $app->run();

@@ -1,16 +1,16 @@
-miApp.controller("controlInicio",function($scope,$auth){
+miApp.controller("controlInicio",function($scope,$auth,$state){
 
 if($auth.isAuthenticated())
 $scope.user = $auth.getPayload();
 console.info($scope.user);
 
 
-	$scope.Desloguear = function(){
+	
+	$scope.Deslogueo = function(){
 
 				$auth.logout();
 				$state.go("inicio");
 			}
-
 
 
 })

@@ -31,7 +31,12 @@ $scope.Usuarios = function(param)
 		{
 			$scope.usuario.nombre_usuario="empleado";
 			$scope.usuario.pass_usuario="empleado"
+		}else if(param === "ENCARGADO")
+		{
+			$scope.usuario.nombre_usuario="encargado";
+			$scope.usuario.pass_usuario="encargado"
 		}
+		
 	}
 
 

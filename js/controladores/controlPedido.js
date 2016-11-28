@@ -1,23 +1,27 @@
-miApp.controller("promocionCtrl",function($scope,$auth,$state,FileUploader,factoryProducto,factoryPromocion,factoryLocal,factoryGrilla){
-	console.log(factoryProducto.ApiArchivos());//inicio las variables
-	$scope.SubirdorArchivos = new FileUploader({url:factoryProducto.ApiArchivos()});  
+miApp.controller("pedidosCtrl",function($scope,$auth,$state,FileUploader,factoryProducto,factoryPromocion,factoryLocal,factoryGrilla,factoryPedidos){
+  console.log(factoryProducto.ApiArchivos());//inicio las variables
+  $scope.SubirdorArchivos = new FileUploader({url:factoryProducto.ApiArchivos()});  
   if($auth.isAuthenticated())
 $scope.user = $auth.getPayload();
 
-  	/*$scope.persona.nombre= "natalia" ;
-  	$scope.persona.dni= "1" ;
-  	$scope.persona.apellido= "natalia" ;
-  	$scope.persona.foto="pordefecto.png";
-  	*///$scope.persona.foto="http://localhost:8080/Laboratorio-IV-2016/Clase.07/ws1/fotos/pordefecto.png";
+    /*$scope.persona.nombre= "natalia" ;
+    $scope.persona.dni= "1" ;
+    $scope.persona.apellido= "natalia" ;
+    $scope.persona.foto="pordefecto.png";
+    *///$scope.persona.foto="http://localhost:8080/Laboratorio-IV-2016/Clase.07/ws1/fotos/pordefecto.png";
 $scope.Deslogueo = function(){
 
         $auth.logout();
         $state.go("inicio");
       }
-  $scope.promocion={};
+  $scope.pizza={};
 
-    
-
+    factoryGrilla.TraerTodosLosClientes()
+                .then(function(respuesta) {
+                  console.info(respuesta);
+                 $scope.listaclientes={};
+                  $scope.listaclientes= respuesta;
+                });   
 
    factoryProducto.TraerTodosProductos()
                 .then(function(respuesta) {
@@ -30,20 +34,22 @@ factoryLocal.TraerTodosLosLocales()
           .then(function(respuesta) {
                  $scope.listalocales={};
                   $scope.listalocales= respuesta;
+                  console.info($scope.listalocales);
                 });
 
 
 $scope.Guardar = function () {
 
-        console.info($scope.promocion);
+        console.info($scope.objeSeleccionadoLocal);
 
         if ($scope.objeSeleccionadoPizza == null && $scope.objeSeleccionadoLocal == null)
             return;
 
-        $scope.promocion.id_local = $scope.objeSeleccionadoLocal.id_local;
-        $scope.promocion.id_pizza = $scope.objeSeleccionadoPizza.id_pizza;
-        console.info($scope.promocion);
-        factoryPromocion.InsertarPromocion(JSON.stringify($scope.promocion))
+        $scope.pizza.id_local = $scope.objeSeleccionadoLocal.id_local;
+        $scope.pizza.id_pizza = $scope.objeSeleccionadoPizza.id_pizza;
+        $scope.pizza.id_user = $scope.objeSeleccionadoUser.id_usuario;
+        console.info($scope.pizza);
+        factoryPedidos.InsertarPedido(JSON.stringify($scope.pizza))
             .then(function (respuesta) {
               // $state.go("Abm.PromocionGrilla");
 
@@ -63,7 +69,7 @@ $scope.Guardar = function () {
 
 
 
-factoryPromocion.TraerTodasLasPromos()
+factoryPedidos.TraerTodosLosPedidos()
           .then(function(respuesta) {
                  $scope.listalocales={};
                  console.info(respuesta);
@@ -72,9 +78,12 @@ factoryPromocion.TraerTodasLasPromos()
 
        function columPromo () {
   return [
-        { field: 'precio_promo', name: 'precio'},
-        {field: 'descripcion_pizza', name: 'pizza'},
+        { field: 'nombre_usuario', name: 'cliente'},
+        {field: 'descripcion_pizza', name: 'descripcion pedido'},
+        {field: 'cantidad_pizza', name: 'cantidad pedido'},
         {field: 'nombre_local', name: 'local'},
+        {field: 'fecha_entrega', name: 'fecha de entrega'},
+        {field: 'estado_pedido', name: 'estado del pedido'},
         ];
     
   }

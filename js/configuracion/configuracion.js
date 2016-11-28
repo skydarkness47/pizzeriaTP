@@ -118,7 +118,44 @@ $stateProvider
 					controller:"promocionCtrl"
 						}
 				}
+			}).state(
+			"menu.GrillaPromociones",{
+				url:"/promociones",
+				views: {
+					"contenido":{
+					templateUrl:"vistas/grillaPromociones.html",
+					controller:"promocionCtrl"
+						}
+				}
+			}).state(
+			"menu.altaPedidos",{
+				url:"/altapedidos",
+				views: {
+					"contenido":{
+					templateUrl:"vistas/altaPedido.html",
+					controller:"pedidosCtrl"
+						}
+				}
+			}).state(
+			"menu.grillaPedidos",{
+				url:"/pedidos",
+				views: {
+					"contenido":{
+					templateUrl:"vistas/grillaPedidos.html",
+					controller:"pedidosCtrl"
+						}
+				}
+			}).state(
+			"menu.grillasEmpleados",{
+				url:"/grillasEmpleados",
+				views: {
+					"contenido":{
+					templateUrl:"vistas/grillasEmpleados.html",
+					controller:"controlGrillas"
+						}
+				}
 			})
+
 
 
 

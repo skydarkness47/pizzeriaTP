@@ -16,7 +16,7 @@ class Pedido
 	public $fecha_entrega;
 //--------------------------------------------------------------------------------//
 //--METODO DE CLASE
-	public static function TraerTodasLosPedidos()
+	public static function TraerTodosLosPedidos()
 	{
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 	    $consulta =$objetoAccesoDato->RetornarConsulta("select pedido.id_pedido, pedido.id_user, pedido.id_pizza, pedido.id_local, pedido.cantidad_pizza, pedido.estado_pedido, pedido.fecha_entrega, usuario.nombre_usuario, pizza.descripcion_pizza, local.nombre_local " 

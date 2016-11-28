@@ -27,9 +27,9 @@
   <ul>
     <li><a ui-sref="inicio">INICIO</a></li>
     <li><a ui-sref="menu.GrillaLocal">LOCALES</a></li>
-    <li><a href="#">OFERTAS</a>    </li>
-    <li><a >RESERVAS</a></li>
-           <li><a ng-Click="Deslogueo()">DESLOGUEO</a></li>
+    <li><a ui-sref="menu.GrillaPromociones">PROMOCIONES</a>    </li>
+    <li><a ui-sref="menu.altaPedidos" >ALTA PEDIDOS</a></li>
+        <li><a ng-Click="Deslogueo()">DESLOGUEARSE</a></li>
        <h1>HOLA {{user.usuario}}</h1>
 </div>
 
@@ -38,15 +38,29 @@
 <nav class="dropdownmenu">
   <ul>
     <li><a ui-sref="inicio">INICIO</a></li>
-    <li><a >SOBRE NOSOTROS</a></li>
-    <li><a ui-sref="menu.registro">ALTAS CLIENTES</a></li>
+    <li><a ui-sref="menu.Registro">ALTAS CLIENTES</a></li>
     <li><a ui-sref="menu.AltaProducto">ALTA PRODUCTOS</a></li>
     <li><a ui-sref="menu.AltaPromocion">ALTA PROMOCION</a></li>
-    <li><a ui-sref="menu.AltaProducto">ALTA PEDIDOS</a></li>
+    <li><a ui-sref="menu.altaPedidos">ALTA PEDIDOS</a></li>
+        <li><a ui-sref="menu.Grillas">GRILLA CLIENTES EMPLEADOS</a></li>
+    <li><a ui-sref="menu.grillaPedidos" >GRILLA PEDIDOS</a></li>
     <li><a ng-Click="Deslogueo()">DESLOGUEARSE</a></li>
-    </ul>
+       <h1>HOLA {{user.usuario}}</h1>
+  </ul>
 </nav>
-     <h1>HOLA {{user.usuario}}</h1>
+</div>
+
+<div ng-if="user.rol == 'ENCARGADO'" >
+<nav class="dropdownmenu">
+  <ul>
+    <li><a ui-sref="inicio">INICIO</a></li>
+    <li><a ui-sref="menu.Registro">ALTAS CLIENTES Y EMPLEADOS</a></li>
+    <li><a ui-sref="menu.AltaProducto">ALTA PRODUCTOS</a></li>
+    <li><a ui-sref="menu.AltaPromocion">ALTA PROMOCION</a></li>
+    <li><a ui-sref="menu.altaPedidos">ALTA PEDIDOS</a></li>
+        <li><a ui-sref="menu.Grillas">GRILLA CLIENTES EMPLEADOS</a></li>
+    <li><a ng-Click="Deslogueo()">DESLOGUEARSE</a></li>
+       <h1>HOLA {{user.usuario}}</h1>
 
 </div>
 
