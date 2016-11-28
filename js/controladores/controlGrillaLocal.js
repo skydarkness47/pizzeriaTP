@@ -29,7 +29,7 @@ factoryLocal.ModificarLocal(JSON.stringify(row))
 
 $scope.abrir = function (row) { 
 var ventana;
-ventana = window.open(row,'./vistas/slider.html','','top=300,left=300,width=300,height=300');ç
+ventana = window.open('./vistas/slider.html','','top=300,left=300,width=300,height=300');
 ventana.focus(); 
 } 
 
