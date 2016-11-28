@@ -3,12 +3,12 @@
 <div ng-if="user.rol == 'ADMINISTRADOR'" >
   <nav class="dropdownmenu">
     <ul>
-        <li><a ui-sref="menu.inicio">INICIO</a></li>
-        <li><a ui-sref="menu.ABM">ALTA USUARIOS</a></li>
-        <li><a ui-sref="menu.AltaLocal">ALTA LOCAL</a></li>
-        <li><a ng-Click="Deslogueo()" >DESLOGUEARSE</a></li>
-        <li><a ui-sref="menu.Grillas" >GRILLA USUARIOS</a></li>
-        <li><a ui-sref="menu.GrillaLocal" >GRILLA LOCALES</a></li>
+         <li><a ui-sref="inicio">INICIO</a></li>
+    <li><a ui-sref="menu.ABM">ALTAS USUARIOS</a></li>
+    <li><a ui-sref="menu.AltaLocal">ALTA LOCAL</a></li>
+    <li><a ui-sref="menu.Grillas">GRILLAS USUARIOS</a></li>
+     <li><a ui-sref="menu.GrillaLocal" >GRILLA LOCALES</a></li>
+     <li><a ng-Click="Deslogueo()">DESLOGUEARSE</a></li>
     </ul>
   </nav>
 </div>
@@ -30,7 +30,17 @@
 <br>
 <br>
 
-    <div ui-grid="gridOptions" class="myGrid" ui-grid-pagination ui-grid-resize-columns></div>
+    <div ui-grid="gridOptions" class="myGrid" 
+    ui-grid-pagination
+    ui-grid-resize-columns
+     ui-grid-cellNav 
+    ui-grid-edit 
+    ui-grid-row-edit
+
+
+
+    >
+    </div>
 
  
          <div zoom="2"

@@ -2,20 +2,17 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/style_inicio.css">
     <link rel="stylesheet" href="css/style.css">
-
+<link rel="stylesheet" href="css/style_slider.css">
   
 <div ng-if="user.rol == 'ADMINISTRADOR'" >
 <nav class="dropdownmenu">
   <ul>
-    <li><a ui-sref="inicio">INICIO</a></li>
-    <li><a >SOBRE NOSOTROS</a></li>
-    <li><a href="#">SUCURSALES</a>    </li>
-    <li><a >CONTACTENOS</a></li>
+   <li><a ui-sref="inicio">INICIO</a></li>
     <li><a ui-sref="menu.ABM">ALTAS USUARIOS</a></li>
     <li><a ui-sref="menu.AltaLocal">ALTA LOCAL</a></li>
-    <li><a ng-Click="Deslogueo()">DESLOGUEARSE</a></li>
     <li><a ui-sref="menu.Grillas">GRILLAS USUARIOS</a></li>
      <li><a ui-sref="menu.GrillaLocal" >GRILLA LOCALES</a></li>
+     <li><a ng-Click="Deslogueo()">DESLOGUEARSE</a></li>
 </ul>
 </nav>
      <h1>HOLA {{user.usuario}}</h1>
@@ -42,7 +39,7 @@
     <li><a ui-sref="menu.AltaProducto">ALTA PRODUCTOS</a></li>
     <li><a ui-sref="menu.AltaPromocion">ALTA PROMOCION</a></li>
     <li><a ui-sref="menu.altaPedidos">ALTA PEDIDOS</a></li>
-        <li><a ui-sref="menu.Grillas">GRILLA CLIENTES EMPLEADOS</a></li>
+        <li><a ui-sref="menu.Grillas">GRILLA CLIENTES </a></li>
     <li><a ui-sref="menu.grillaPedidos" >GRILLA PEDIDOS</a></li>
     <li><a ng-Click="Deslogueo()">DESLOGUEARSE</a></li>
        <h1>HOLA {{user.usuario}}</h1>
@@ -58,7 +55,7 @@
     <li><a ui-sref="menu.AltaProducto">ALTA PRODUCTOS</a></li>
     <li><a ui-sref="menu.AltaPromocion">ALTA PROMOCION</a></li>
     <li><a ui-sref="menu.altaPedidos">ALTA PEDIDOS</a></li>
-        <li><a ui-sref="menu.Grillas">GRILLA CLIENTES EMPLEADOS</a></li>
+    <li><a ui-sref="menu.Grillas">GRILLA CLIENTES EMPLEADOS</a></li>
     <li><a ng-Click="Deslogueo()">DESLOGUEARSE</a></li>
        <h1>HOLA {{user.usuario}}</h1>
 
@@ -75,6 +72,9 @@
   </ul>
   </nav>
 <h1>BIENVENIDOS A Pizzerías Argenta SRL</h1>
+
+
+
 
 </div>
 

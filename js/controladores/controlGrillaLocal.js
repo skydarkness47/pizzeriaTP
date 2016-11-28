@@ -16,6 +16,23 @@ factoryLocal.BorrarLocal(JSON.stringify(row.id_local))
 
 }
 
+$scope.ModificarLocal = function(row){
+factoryLocal.ModificarLocal(JSON.stringify(row))
+                .then(function(respuesta) {
+                  $scope.gridOptions.data= respuesta;
+                    console.log(respuesta);
+             
+                });
+
+
+}
+
+$scope.abrir = function (row) { 
+var ventana;
+ventana = window.open('./vistas/slider.html','','top=300,left=300,width=300,height=300');ç
+ventana.focus(); 
+} 
+
   $scope.Deslogueo = function(){
 
         $auth.logout();
@@ -73,7 +90,9 @@ function columADM () {
         },
         { width: 100, cellTemplate:"<button ng-Click='grid.appScope.BorrarLocal(row.entity)'>BORRAR", name:"BORRAR"
         }
-
+        ,
+        { width: 100, cellTemplate:"<button ng-Click='grid.appScope.abrir(row.entity)'>IMAGENES", name:"IMAGENES"
+        }
 
         ];
     

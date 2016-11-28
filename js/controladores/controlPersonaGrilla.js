@@ -26,6 +26,13 @@ console.info("empleado");
                   $scope.gridOptions.data= respuesta;
              
                 });
+  }else if($scope.user.rol === "EMPLEADO"){
+console.info("empleado");
+     factoryGrilla.TraerTodosLosClientes()
+                .then(function(respuesta) {
+                  $scope.gridOptions.data= respuesta;
+             
+                });
   }
 
 
@@ -101,10 +108,13 @@ function columClieEmple () {
         $scope.gridOptions.paginationPageSize = 25;
 
         if($scope.user.rol === "ADMINISTRADOR"){
-         $scope.gridOptions.columnDefs = columDefs();
+         $scope.gridOptions.columnDefs = columAdmin();
         }else  if($scope.user.rol == "ENCARGADO"){
          $scope.gridOptions.columnDefs = columClieEmple();
+        }else if($scope.user.rol == "EMPLEADO"){
+          $scope.gridOptions.columnDefs = columCliente();
         }
+
   //  $scope.gridOptions.enableFiltering = true;
     // Configuracion del idioma.
     i18nService.setCurrentLang('es');

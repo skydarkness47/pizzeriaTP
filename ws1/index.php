@@ -145,12 +145,19 @@ $local=json_decode($args['objeto']);
 
 $app->delete('/local/BorrarLocal/{objeto}', function ($request, $response, $args) {
         
-        $local=json_encode($args['objeto']);  
+        $local=json_decode($args['objeto']);  
         
-         $local = preg_replace('([^A-Za-z0-9])', '', $local);
 
 
           return Local::BorrarLocal($local); 
+    
+});
+
+$app->post('/local/modificar/{objeto}', function ($request, $response, $args) {
+        
+        $local=json_decode($args['objeto']);  
+
+          return Local::ModificarLocal($local); 
     
 });
 

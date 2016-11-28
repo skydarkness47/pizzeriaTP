@@ -27,7 +27,15 @@ console.log(objeto);
 
     }
 
-
+   this.BorrarLocal = BorrarLocal;
+   function BorrarLocal(id){
+    console.info(id);
+    return $http.delete(Url + "local/BorrarLocal/" + id) 
+    .then(function(respuesta) {
+      console.info(respuesta);
+      return TraerTodosLosLocales();
+    });
+   };
 
     this.BorrarObjeto = BorrarObjeto;
 
@@ -100,6 +108,18 @@ console.log(objeto);
 
   }//FIN IF QUE TRAER CLIENTE
   
+ this.ModificarLocal = ModificarLocal;
+  function ModificarLocal(objeto){
+    console.info(objeto);
+    return $http.post(Url + "local/modificar/"+ objeto)
+      .then(function(respuesta) {
+      console.info(respuesta); 
+       return respuesta.data
 
+    })      // FIN DEL RETURN
+
+
+  }//FIN IF QUE TRAER CLIENTE
+  
 
   })

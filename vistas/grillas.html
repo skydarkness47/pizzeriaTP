@@ -2,12 +2,12 @@
 <div ng-if="user.rol == 'ADMINISTRADOR'">
 <nav class="dropdownmenu">
   <ul>
-    <li><a ui-sref="menu.inicio">INICIO</a></li>
-     <li><a ui-sref="menu.ABM">ALTA USUARIOS</a></li>
-     <li><a ui-sref="menu.AltaLocal">ALTA LOCAL</a></li>
-     <li><a ng-Click="Deslogueo()" >DESLOGUEARSE</a></li>
-     <li><a ui-sref="menu.Grillas" >GRILLA USUARIOS</a></li>
+ <li><a ui-sref="inicio">INICIO</a></li>
+    <li><a ui-sref="menu.ABM">ALTAS USUARIOS</a></li>
+    <li><a ui-sref="menu.AltaLocal">ALTA LOCAL</a></li>
+    <li><a ui-sref="menu.Grillas">GRILLAS USUARIOS</a></li>
      <li><a ui-sref="menu.GrillaLocal" >GRILLA LOCALES</a></li>
+     <li><a ng-Click="Deslogueo()">DESLOGUEARSE</a></li>
 
 
   </ul>
@@ -17,12 +17,14 @@
 <div ng-if="user.rol == 'EMPLEADO'">
 <nav class="dropdownmenu">
   <ul>
-     <li><a ui-sref="inicio">INICIO</a></li>
+      <li><a ui-sref="inicio">INICIO</a></li>
     <li><a ui-sref="menu.Registro">ALTAS CLIENTES</a></li>
     <li><a ui-sref="menu.AltaProducto">ALTA PRODUCTOS</a></li>
     <li><a ui-sref="menu.AltaPromocion">ALTA PROMOCION</a></li>
     <li><a ui-sref="menu.altaPedidos">ALTA PEDIDOS</a></li>
-    <li><a ng-Click="Deslogueo()">DESLOGUEARSE</a></li>
+        <li><a ui-sref="menu.Grillas">GRILLA CLIENTES </a></li>
+    <li><a ui-sref="menu.grillaPedidos" >GRILLA PEDIDOS</a></li>
+    <li><a ng-Click="Deslogueo()">DESLOGUEARSE</a></li
 
   </ul>
 </nav>

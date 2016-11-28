@@ -28,15 +28,7 @@ this.TraerTodosLosLocales =TraerTodosLosLocales;
 
 
 
-    this.BorrarLocal = BorrarLocal;
-   function BorrarLocal(id){
-    console.info(id);
-    return $http.delete(Url + "local/BorrarLocal/" + id) 
-    .then(function(respuesta) {
-      console.info(respuesta);
-      return TraerTodosLosLocales();
-    });
-   };
+ 
 
     this.borrarUsuario = borrarUsuario;
    function borrarUsuario(id){

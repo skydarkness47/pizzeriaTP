@@ -4,6 +4,7 @@ objeto = {};
   objeto.InsertarLocal = InsertarLocal;
 objeto.TraerTodosLosLocales=TraerTodosLosLocales;
 objeto.BorrarLocal = BorrarLocal;
+objeto.ModificarLocal =ModificarLocal;
    return objeto;
 
 
@@ -22,11 +23,14 @@ objeto.BorrarLocal = BorrarLocal;
 
   function BorrarLocal(id)
   {
-    console.info(id);
-        return Grilla.BorrarLocal(id);
+        return ABM.BorrarLocal(id);
 
   }
+ function ModificarLocal(local)
+  {
+        return ABM.ModificarLocal(local);
 
+  }
 
 
 })

@@ -5,14 +5,14 @@
 <div ng-if="user.rol == 'EMPLEADO'">
 <nav class="dropdownmenu">
   <ul>
-    <li><a ui-sref="inicio">INICIO</a></li>
+     <li><a ui-sref="inicio">INICIO</a></li>
     <li><a ui-sref="menu.Registro">ALTAS CLIENTES</a></li>
     <li><a ui-sref="menu.AltaProducto">ALTA PRODUCTOS</a></li>
     <li><a ui-sref="menu.AltaPromocion">ALTA PROMOCION</a></li>
     <li><a ui-sref="menu.altaPedidos">ALTA PEDIDOS</a></li>
-        <li><a ui-sref="menu.grillaPedidos" >GRILLA PEDIDOS</a></li>
+    <li><a ui-sref="menu.Grillas">GRILLA CLIENTES </a></li>
+    <li><a ui-sref="menu.grillaPedidos" >GRILLA PEDIDOS</a></li>
     <li><a ng-Click="Deslogueo()">DESLOGUEARSE</a></li>
-
   </ul>
 </nav>
 </div>
@@ -33,12 +33,12 @@
 <div ng-if="user.rol == 'ENCARGADO'" >
 <nav class="dropdownmenu">
   <ul>
-    <li><a ui-sref="inicio">INICIO</a></li>
+       <li><a ui-sref="inicio">INICIO</a></li>
     <li><a ui-sref="menu.Registro">ALTAS CLIENTES Y EMPLEADOS</a></li>
     <li><a ui-sref="menu.AltaProducto">ALTA PRODUCTOS</a></li>
     <li><a ui-sref="menu.AltaPromocion">ALTA PROMOCION</a></li>
     <li><a ui-sref="menu.altaPedidos">ALTA PEDIDOS</a></li>
-        <li><a ui-sref="menu.Grillas">GRILLA CLIENTES EMPLEADOS</a></li>
+    <li><a ui-sref="menu.Grillas">GRILLA CLIENTES EMPLEADOS</a></li>
     <li><a ng-Click="Deslogueo()">DESLOGUEARSE</a></li>
 
 </div>
