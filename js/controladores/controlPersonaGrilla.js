@@ -69,8 +69,8 @@ $scope.ModificarUsuario= function(obj){
 
             { field: 'nombre_usuario', name: 'nombre'},
             {field: 'descripcion_rol', name: 'rol'},
-            { width: 100, cellTemplate:"<button ng-Click='grid.appScope.borrarUsuario(row.entity)'>Borrar", name:"MostrarAmigos"},
-            { width: 100, cellTemplate:"<button ng-Click='grid.appScope.ModificarUsuario(row.entity)'>Modificar", name:"GpsAmigos"  }
+            { width: 100, cellTemplate:"<button ng-Click='grid.appScope.borrarUsuario(row.entity)'>Borrar", name:"Borrar",enableCellEdit: false},
+            { width: 100, cellTemplate:"<button ng-Click='grid.appScope.ModificarUsuario(row.entity)'>Modificar", name:"Modificar" ,enableCellEdit: false }
 
            
             ];

@@ -1,4 +1,4 @@
-miApp.controller("controlInicio",function($scope,$auth,$state){
+miApp.controller("controlInicio",function($scope,$auth,$state,factoryLocal){
 
 if($auth.isAuthenticated())
 $scope.user = $auth.getPayload();
@@ -14,6 +14,11 @@ console.info("hola");
 				$state.go("inicio");
 			}
 
-
+  factoryLocal.TraerTodosLosLocales()
+                .then(function(respuesta) {
+                  $scope.List= respuesta;
+                    console.log(respuesta);
+             
+                });
 
 })

@@ -29,7 +29,7 @@ factoryLocal.ModificarLocal(JSON.stringify(row))
 
 $scope.abrir = function (row) { 
 var ventana;
-ventana = window.open('./vistas/slider.html','','top=300,left=300,width=300,height=300');ç
+ventana = window.open(row,'./vistas/slider.html','','top=300,left=300,width=300,height=300');ç
 ventana.focus(); 
 } 
 
@@ -86,12 +86,12 @@ function columADM () {
         {field: 'latitud_local', name: 'latitud'},
         {field: 'longitud_local', name: 'longitud'},
         
-        { width: 100, cellTemplate:"<button ng-Click='grid.appScope.ModificarLocal(row.entity)'>MODIFICAR", name:"MODIFICAR"
+        { width: 100, cellTemplate:"<button ng-Click='grid.appScope.ModificarLocal(row.entity)'>MODIFICAR", name:"MODIFICAR",enableCellEdit: false
         },
-        { width: 100, cellTemplate:"<button ng-Click='grid.appScope.BorrarLocal(row.entity)'>BORRAR", name:"BORRAR"
+        { width: 100, cellTemplate:"<button ng-Click='grid.appScope.BorrarLocal(row.entity)'>BORRAR", name:"BORRAR",enableCellEdit: false
         }
         ,
-        { width: 100, cellTemplate:"<button ng-Click='grid.appScope.abrir(row.entity)'>IMAGENES", name:"IMAGENES"
+        { width: 100, cellTemplate:"<button ng-Click='grid.appScope.abrir(row.entity)'>IMAGENES", name:"IMAGENES",enableCellEdit: false
         }
 
         ];
