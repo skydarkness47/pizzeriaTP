@@ -49,9 +49,8 @@ $scope.borrarUsuario= function(obj){
                 });              
       }
 $scope.ModificarUsuario= function(obj){
-  JSON.stringify(obj);
-  console.info(obj);
-   factoryGrilla.ModificarUsuario(obj)
+
+   factoryGrilla.ModificarUsuario(JSON.stringify(obj))
                 .then(function(respuesta) {
 
                     factoryGrilla.TraerTodos()

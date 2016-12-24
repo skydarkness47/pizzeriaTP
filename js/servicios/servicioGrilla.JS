@@ -35,16 +35,16 @@ this.TraerTodosLosLocales =TraerTodosLosLocales;
     return $http.delete(Url + "usuarios/borrar/" + id) 
     .then(function(respuesta) {
       console.info(respuesta);
-      return TraerTodosLosLocales();
+      return TraerTodos();
     });
    };
 
    this.ModificarUsuario = ModificarUsuario;
    function ModificarUsuario(obj){
-    return $http.get(Url + "usuarios/modificar/" + obj) 
+    return $http.post(Url + "usuarios/modificar/" + obj) 
     .then(function(respuesta) {
       console.info(respuesta);
-      return TraerTodosLosLocales();
+      return TraerTodos();
     });
    };
 

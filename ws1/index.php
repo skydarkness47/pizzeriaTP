@@ -75,19 +75,17 @@ $app->delete('/usuarios/borrar/{objeto}', function ($request, $response, $args) 
         
         $usuario=json_decode($args['objeto']);  
         
-         $usuario = preg_replace('([^A-Za-z0-9])', '', $usuario);
 
 
           return Usuario::BorrarUsuario($usuario); 
     
 });
 
-$app->get('/usuarios/modificar/{objeto}', function ($request, $response, $args) {
+$app->post('/usuarios/modificar/{objeto}', function ($request, $response, $args) {
         
         $usuario=json_decode($args['objeto']);  
         
-        
-
+         var_dump($usuario);
 
           return Usuario::ModificarUsuario($usuario); 
     
@@ -133,7 +131,7 @@ $local=json_decode($args['objeto']);
             $rutaNueva=$local->nombre_local. "_". $i .".".PATHINFO($rutaVieja, PATHINFO_EXTENSION);
             copy($rutaVieja, "fotos/".$rutaNueva);
             unlink($rutaVieja);
-            $arrayFoto[]="http://localhost:8080/pizzeriaTP/ws1/fotos/".$rutaNueva;
+            $arrayFoto[]='http://localhost:8080/pizzeriaTP/ws1/fotos/'.$rutaNueva;
         } 
 
         $local->foto_local=json_encode($arrayFoto); 

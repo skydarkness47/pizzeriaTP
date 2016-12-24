@@ -5,6 +5,7 @@ objeto = {};
 objeto.TraerTodosLosLocales=TraerTodosLosLocales;
 objeto.BorrarLocal = BorrarLocal;
 objeto.ModificarLocal =ModificarLocal;
+
    return objeto;
 
 

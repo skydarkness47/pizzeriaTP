@@ -3,6 +3,7 @@ miApp.controller("altaLocal",function($scope,$state,$auth,$http,factoryLocal,Fil
 
 		$scope.SubirdorArchivos = new FileUploader({url:'http://localhost:8080/pizzeriaTP/ws1/archivos'});  
 	$scope.local={};
+
  
   	//$scope.persona.foto="http://localhost:8080/Laboratorio-IV-2016/Clase.07/ws1/fotos/pordefecto.png";
 
@@ -42,8 +43,16 @@ factoryLocal.InsertarLocal(JSON.stringify($scope.local)) //+ JSON.stringify($sco
 				nombreFoto = ($scope.SubirdorArchivos.queue[i]._file.name);
 		}
 		$scope.local.foto_local=nombreFoto;
+
 	}
 	$scope.SubirdorArchivos.uploadAll();
   }
 
+    $scope.placeMarker = function(e) {
+
+        var marker = new google.maps.Marker({ position: e.latLng, map: $scope.map });
+        $scope.map.panTo(e.latLng);
+        $scope.local.latitud_local = e.latLng.lat();
+        $scope.local.longitud_local = e.latLng.lng();
+    }
 })

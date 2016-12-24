@@ -43,14 +43,12 @@
         </p>
          <p>
          <input type="text" value="" placeholder="ingrese la direccion del local" ng-model="local.direccion_local" required />
-        </p>
-         <p>
-          <input type="text" value="" placeholder="ingrese la latitud del local" ng-model="local.latitud_local" required />
-        </p>
-         <p>
-             <input type="text" value="" placeholder="ingrese la longitud del local" ng-model="local.longitud_local" required />
-        </p>
-         <p>
+       
+
+       <ng-map center="current-location" on-click="placeMarker()">
+          <marker position="{{lat}},{{lng}}"></marker>
+        </ng-map>
+         
                    <input type="file" nv-file-select="" uploader="SubirdorArchivos" multiple  /><br/>
 
     <li ng-repeat="item in SubirdorArchivos.queue">

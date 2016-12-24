@@ -4,7 +4,7 @@ miApp.controller('grillaLocal', function($scope, $state,i18nService,NgMap, uiGri
 
 
  $scope.user = $auth.getPayload();
-
+ $scope.locales = {};
 $scope.BorrarLocal = function(row){
 
 factoryLocal.BorrarLocal(JSON.stringify(row.id_local))
@@ -27,11 +27,12 @@ factoryLocal.ModificarLocal(JSON.stringify(row))
 
 }
 
-$scope.abrir = function (row) { 
-var ventana;
-ventana = window.open('./vistas/slider.html','','top=300,left=300,width=300,height=300');
-ventana.focus(); 
-} 
+factoryLocal.TraerTodosLosLocales().
+then(function(respuesta)
+{
+$scope.locales = respuesta;
+});
+
 
   $scope.Deslogueo = function(){
 

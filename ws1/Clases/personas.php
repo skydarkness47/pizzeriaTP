@@ -122,7 +122,7 @@ public static function TraerClientesEmpleados()
 		//$consulta =$objetoAccesoDato->RetornarConsulta("delete from persona	WHERE id=:id");	
 		$consulta =$objetoAccesoDato->RetornarConsulta("delete 
 				from usuario 				
-				WHERE id=:id");	
+				WHERE id_usuario=:id");	
 		$consulta->bindValue(':id',$idParametro, PDO::PARAM_INT);		
 		$consulta->execute();
 		return $consulta->rowCount();
@@ -145,6 +145,8 @@ public static function TraerClientesEmpleados()
 		{
 			$usuario->id_rol = 2;
 		}
+
+	
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 			$consulta =$objetoAccesoDato->RetornarConsulta("
 				update usuario 

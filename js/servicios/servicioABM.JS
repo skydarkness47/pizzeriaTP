@@ -1,5 +1,5 @@
 
-miApp.service('ABM', function ($http,factoryRutas) {
+miApp.service('ABM', function ($http,factoryRutas,Grilla) {
         
 var Url = factoryRutas.ApiUrl;
 
@@ -33,7 +33,7 @@ console.log(objeto);
     return $http.delete(Url + "local/BorrarLocal/" + id) 
     .then(function(respuesta) {
       console.info(respuesta);
-      return TraerTodosLosLocales();
+      return Grilla.TraerTodosLosLocales();
     });
    };
 
